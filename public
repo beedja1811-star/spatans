@@ -1,0 +1,999 @@
+<!doctype html><html lang="ht"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Empire des Spatiates — Trading Coaching</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}.logo{display:flex;align-items:center;gap:10px}.logo-mark{width:42px;height:42px;object-fit:contain;display:block}nav{display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:#fff;border-bottom:1px solid #e8ebf2;position:sticky;top:0;z-index:5}.logo{font-size:20px;font-weight:800}.btn{background:#172033;color:#fff;padding:13px 20px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-weight:700}.hero{padding:78px 7%;background:linear-gradient(135deg,#172033,#34496f);color:#fff}.hero h1{font-size:48px;max-width:780px;margin:0 0 20px}.hero p{font-size:19px;max-width:680px;line-height:1.6;color:#e5e9f2}.section{padding:60px 7%;max-width:1100px;margin:auto}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card,.q{background:#fff;padding:25px;border-radius:16px;box-shadow:0 8px 30px #17203312}.quiz{max-width:820px}.q{margin:16px 0}.q label{display:block;padding:12px;border:1px solid #e2e6ef;border-radius:9px;margin:8px 0;cursor:pointer}.q label:hover{background:#f3f6fb}.q input[type=radio]{width:auto;margin-right:8px}input,select{width:100%;padding:13px;border:1px solid #d8deea;border-radius:9px;margin-top:7px;background:#fff}.contact-fields{display:grid;gap:12px;margin-top:12px}.contact-fields>input{margin-top:0}.phone-field{display:grid;grid-template-columns:minmax(250px,.9fr) 1.4fr;gap:10px;position:relative}.phone-field>input{margin-top:0}.country-picker{position:relative}.country-trigger{width:100%;min-height:48px;padding:13px 14px;border:1px solid #d8deea;border-radius:9px;background:#fff;color:#172033;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:15px;cursor:pointer;text-align:left}.country-trigger:hover,.country-trigger:focus{border-color:#9bb5e5;outline:none;box-shadow:0 0 0 3px #1f5fbf12}.country-chevron{font-size:18px;color:#657087}.country-menu{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;border:1px solid #d8deea;border-radius:12px;box-shadow:0 14px 35px #17203320;z-index:20;padding:8px}.country-search-wrap{position:relative}.country-search{width:100%;margin:0!important;padding:11px 12px 11px 38px!important;border:1px solid #d8deea!important;border-radius:9px!important}.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:21px;color:#657087;z-index:1;line-height:1}.country-options{max-height:230px;overflow:auto;margin-top:6px}.country-option{width:100%;padding:10px 11px;border:0;background:#fff;border-radius:8px;display:flex;align-items:center;gap:9px;color:#172033;cursor:pointer;text-align:left;font-size:14px}.country-option:hover,.country-option.active{background:#f1f5fb}.hidden{display:none}.field-help{display:block;margin-top:6px;font-size:12px;color:#657087}@media(max-width:600px){.phone-field{grid-template-columns:1fr}.country-menu{position:absolute}}.notice{padding:15px;background:#eef4ff;border-radius:10px;margin:15px 0}.hidden{display:none}.success{background:#eaf8ef}.error{background:#fff0f0}.steps{display:flex;gap:8px;margin:25px 0;flex-wrap:wrap}.step{padding:9px 13px;border-radius:999px;background:#e9edf5;font-size:13px}.step.active{background:#172033;color:#fff}.small{font-size:13px;color:#657087}footer{padding:30px;text-align:center;background:#172033;color:#fff}@media(max-width:750px){.hero h1{font-size:35px}.grid{grid-template-columns:1fr}nav{padding:15px 5%}.hero,.section{padding-left:5%;padding-right:5%}}
+</style></head><body>
+<nav><div class="logo"><img class="logo-mark" src="/logo-spartiates.png" alt="Logo Empire des Spatiates"><span class="logo-text">EMPIRE DES SPATIATES</span></div><a class="btn" href="#quiz" data-i18n="apply">POSTILE POU YON APÈL</a></nav>
+<section class="hero"><h1 data-i18n="heroTitle">OU VLE APRANN TRADING AVÈK YON PLAN KI ADAPTE AK OU ?</h1><p data-i18n="heroText">Ranpli fòmilè a. Apre nou fin etidye repons ou yo, n ap wè si nou kapab vrèman ede w. Si nou panse nou ka ede w, n ap pwopoze w yon apèl prive avèk Coach Leonidas pou nou diskite sou sitiyasyon w lan, objektif ou yo, epi wè si akonpayman nou an ka apwopriye pou ou.</p><a class="btn" href="#quiz" data-i18n="apply">POSTILE POU YON APÈL</a></section>
+<section id="quiz" class="section quiz"><h2 data-i18n="quizTitle">KÒMANSE KANDIDATI W LA</h2><p data-i18n="quizIntro">Chwazi lang ou prefere a pou w ranpli fòm nan epi ede nou konprann eksperyans ou, objektif ou ak bezwen ou yo nan trading.</p>
+<div id="languageScreen" class="q"><h3 data-i18n="languageQuestion">Nan ki lang ou prefere ranpli fòm nan?</h3><button type="button" class="btn langChoice" data-lang="Kreyòl">🇭🇹 Kreyòl</button><button type="button" class="btn langChoice" data-lang="Français">🇫🇷 Français</button><button type="button" class="btn langChoice" data-lang="English">🇺🇸 English</button></div>
+<form id="quizForm" class="hidden"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap"><span class="small" id="selectedLanguage"></span><button type="button" class="btn" id="changeLanguage" data-i18n="changeLanguage">Chanje lang mwen te chwazi a</button></div><input type="hidden" name="language" id="language">
+<div class="q"><b data-i18n="q1">1. Ki nivo eksperyans ou nan trading?</b><label><input type="radio" name="q1" value="beginner" required> <span data-i18n="q1a">Mwen debutan</span></label><label><input type="radio" name="q1" value="intermediate"> <span data-i18n="q1b">Mwen gen kèk eksperyans</span></label><label><input type="radio" name="q1" value="advanced"> <span data-i18n="q1c">Mwen deja gen anpil eksperyans</span></label></div>
+<div class="q"><b data-i18n="q2">2. Ki marché ki enterese w plis?</b><select name="q2" required><option value="" data-i18n="choose">Chwazi</option><option>Forex</option><option>Crypto</option><option>Indices</option><option>Stocks</option><option data-i18n="multiMarkets">Plizyè marchés</option><option value="unknown" data-i18n="q2Unknown">Mwen pa konnen</option></select></div>
+<div class="q"><b data-i18n="q3">3. Ki pi gwo difikilte ou genyen?</b><label><input type="radio" name="q3" value="strategy" required> <span data-i18n="q3a">Mwen bezwen yon stratégie klè</span></label><label><input type="radio" name="q3" value="risk"> <span data-i18n="q3b">Risk management</span></label><label><input type="radio" name="q3" value="discipline"> <span data-i18n="q3c">Disiplin / emosyon</span></label><label><input type="radio" name="q3" value="analysis"> <span data-i18n="q3d">Analiz marché</span></label></div>
+<div class="q"><b data-i18n="q4">4. Ki objektif prensipal ou?</b><label><input type="radio" name="q4" value="learn" required> <span data-i18n="q4a">Aprann trading seryezman</span></label><label><input type="radio" name="q4" value="improve"> <span data-i18n="q4b">Amelyore fason mwen trade</span></label><label><input type="radio" name="q4" value="plan"> <span data-i18n="q4c">Bati yon plan trading</span></label></div>
+<div class="q"><b data-i18n="q5">5. Konbyen tan ou ka konsakre chak semèn Pou aprentisaj ou?</b><select name="q5" required><option value="" data-i18n="choose">Chwazi</option><option value="1–3 èdtan" data-i18n="q5a">1–3 èdtan</option><option value="4–7 èdtan" data-i18n="q5b">4–7 èdtan</option><option value="8–15 èdtan" data-i18n="q5c">8–15 èdtan</option><option value="15+ èdtan" data-i18n="q5d">15+ èdtan</option></select></div>
+<div class="q"><b data-i18n="q6">6. Ki kantite lajan ou santiw prè e alèz pou envesti pou w kapab pwogrese pi vit nan trading ou ?</b><select name="q6" required><option value="" data-i18n="choose">Chwazi</option><option data-i18n="under100">Moins de $100</option><option data-i18n="range300500">$300–$500</option><option data-i18n="range5001000">$500–$1,000</option><option data-i18n="range1000plus">$1,000+</option></select></div>
+<div class="q"><b data-i18n="q7">7. Èske ou deja gen yon plan trading ekri?</b><label><input type="radio" name="q7" value="yes" required> <span data-i18n="yes">Wi</span></label><label><input type="radio" name="q7" value="no"> <span data-i18n="no">Non</span></label></div>
+<div class="q"><b data-i18n="q8">8. Ki kalite akonpayman ou prefere?</b><select name="q8" required><option value="" data-i18n="choose">Chwazi</option><option data-i18n="supportOnly">Fòmasyon sèlman</option><option data-i18n="supportPlus">Fòmasyon + coaching</option><option data-i18n="supportPersonal">Coaching plis pèsonalize</option></select></div>
+<div class="q contact-q"><b data-i18n="q9">9. Enfòmasyon ou yo</b><div class="contact-fields"><input name="name" placeholder="Nom et prénom" data-i18n-placeholder="namePlaceholder" required><select name="age" required aria-label="Tranche d’âge"><option value="" data-i18n="ageSelectPlaceholder">Choisir une tranche d’âge</option><option value="18-25 ans" data-i18n="age18to25">18–25 ans</option><option value="25-30 ans" data-i18n="age25to30">25–30 ans</option><option value="30-45 ans" data-i18n="age30to45">30–45 ans</option><option value="45 ans+" data-i18n="age45plus">45 ans+</option></select><input name="email" type="email" placeholder="Email" data-i18n-placeholder="emailPlaceholder" required><div class="phone-field"><div class="country-picker" id="countryPicker"><button type="button" class="country-trigger" id="countryTrigger" aria-haspopup="listbox" aria-expanded="false"><span id="countrySelected">🇭🇹 Ayiti (HT) +509</span><span class="country-chevron">⌄</span></button><div class="country-menu hidden" id="countryMenu"><div class="country-search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input id="countrySearch" class="country-search" type="search" placeholder="Rechercher un pays..." data-i18n-placeholder="countrySearchPlaceholder" autocomplete="off"></div><div id="countryOptions" class="country-options" role="listbox"></div></div></div><input id="countryCode" type="hidden" name="countryCode" value="HT"><input id="countryName" type="hidden" name="countryName" value="Ayiti"><input id="dialCode" type="hidden" name="dialCode" value="+509"><input id="phoneNumber" name="phoneNumber" type="tel" inputmode="tel" placeholder="Numéro de téléphone" data-i18n-placeholder="phonePlaceholder" required><input id="phone" name="phone" type="hidden"></div></div></div>
+<button class="btn" type="submit" data-i18n="finish">Tèmine Kandidati a</button></form>
+<div id="result" class="notice hidden"></div></section>
+<footer data-i18n="footer">EMPIRE DES SPATIATES — Fòmasyon & Coaching Trading</footer>
+<script>
+let leadId='';
+const $=id=>document.getElementById(id);
+let currentLang='Kreyòl';
+const translations={
+  'Kreyòl':{apply:'POSTILE POU YON APÈL',heroTitle:'OU VLE APRANN TRADING AVÈK YON PLAN KI ADAPTE AK OU ?',heroText:'Ranpli fòmilè a. Apre nou fin etidye repons ou yo, n ap wè si nou kapab vrèman ede w. Si nou panse nou ka ede w, n ap pwopoze w yon apèl prive avèk Coach Leonidas pou nou diskite sou sitiyasyon w lan, objektif ou yo, epi wè si akonpayman nou an ka apwopriye pou ou.',learningTitle:'Aprantisaj sa baze sou',trainingTitle:'📚 Fòmasyon',trainingText:'Aprann fondasyon ak yon metòd estriktire.',coachingTitle:'🎯 Coaching',coachingText:'Travay sou pwosesis ou, disiplin ak plan trading ou.',riskTitle:'🛡️ Risk Management',riskText:'Konprann kijan pou w jere risk ou san pwomès pwofi garanti.',quizTitle:'KÒMANSE KANDIDATI W LA',quizIntro:'Chwazi lang ou prefere a pou w ranpli fòm nan epi ede nou konprann eksperyans ou, objektif ou ak bezwen ou yo nan trading.',languageQuestion:'Nan ki lang ou prefere ranpli fòm nan?',changeLanguage:'Chanje lang mwen te chwazi a',selectedLanguage:'Lang ou chwazi a: Kreyòl',q1:'1. Ki nivo eksperyans ou nan trading?',q1a:'Mwen debutan',q1b:'Mwen gen kèk eksperyans',q1c:'Mwen deja gen anpil eksperyans',q2:'2. Ki marché ki enterese w plis?',q2Unknown:'Mwen pa konnen',countrySearchLabel:'Chèche peyi ou a',countrySearchPlaceholder:'Chèche yon peyi oswa yon kòd...',phoneHelp:'Chwazi peyi ou a, epi antre nimewo ou san kòd peyi a.',invalidPhone:'Tanpri antre yon nimewo telefòn valab.',choose:'Chwazi',bookingChooseDate:'Chwazi yon dat anvan',multiMarkets:'Plizyè marchés',q3:'3. Ki pi gwo difikilte ou genyen?',q3a:'Mwen bezwen yon stratégie klè',q3b:'Risk management',q3c:'Disiplin / emosyon',q3d:'Analiz marché',q4:'4. Ki objektif prensipal ou?',q4a:'Aprann trading seryezman',q4b:'Amelyore fason mwen trade',q4c:'Bati yon plan trading',q5:'5. Konbyen tan ou ka konsakre chak semèn Pou aprentisaj ou?',q5a:'1–3 èdtan',q5b:'4–7 èdtan',q5c:'8–15 èdtan',q5d:'15+ èdtan',q6:'6. Ki kantite lajan ou santiw prè e alèz pou envesti pou w kapab pwogrese pi vit nan trading ou ?',q7:'7. Èske ou deja gen yon plan trading ekri?',yes:'Wi',no:'Non',q8:'8. Ki kalite akonpayman ou prefere?',q9:'9. Enfòmasyon ou yo',namePlaceholder:'Non & prénom',agePlaceholder:'Laj ou',ageSelectPlaceholder:'Chwazi tranch laj ou',age18to25:'18–25 an',age25to30:'25–30 an',age30to45:'30–45 an',age45plus:'45 an oswa plis',emailPlaceholder:'Email',phonePlaceholder:'WhatsApp / Telefòn',bookingTitle:'Pran yon randevou ak Coach Leonidas',bookingText:'Kandidati ou an anrejistre. Kounye a chwazi dat ak lè ou vle pran apèl la ak Coach Leonidas.',dateLabel:'1. Chwazi dat apèl la',timeLabel:'2. Chwazi lè apèl la',availability:'Disponibilite : Soti 10:00 AM rive 6:00 PM. Ou ka fè yon demann randevou apati jodi a pou rive nan 14 jou k ap vini yo. Enpòtan : Yon lè ki deja rezève pa disponib ankò.',confirmBooking:'Konfime randevou',supportOnly:'Fòmasyon sèlman',supportPlus:'Fòmasyon + coaching',supportPersonal:'Coaching plis pèsonalize',under100:'Mwens pase $100',range300500:'$300–$500',range5001000:'$500–$1,000',range1000plus:'$1,000+',finish:'Tèmine Kandidati a',confirmationTitle:'4. Konfimasyon',confirmationText:'Demann ou an anrejistre pou',footer:'EMPIRE DES SPATIATES — Fòmasyon & Coaching Trading',slotLoading:'N ap chaje lè ki disponib yo...',noSlots:'Pa gen lè disponib pou dat sa a.',slotTakenSuffix:' — pran',slotPastSuffix:' — pase',chooseDateTime:'Chwazi yon dat ak yon lè.',bookingSending:'N ap anrejistre...',errSlotTaken:'Yon lòt moun sot pran lè sa a. Tanpri chwazi yon lòt.',errAlreadyBooked:'Ou gen yon randevou ki deja anrejistre.',errRange:'Randevou yo disponib sèlman jiska 14 jou apati jodi a.',errInvalidTime:'Lè sa a pa valab.',errPastTime:'Lè sa a deja pase.',errRateLimited:'Twòp tantativ. Tann yon minit.',errMissing:'Ranpli tout chan obligatwa yo.',errNotFound:'Kandidati a pa jwenn.',errServer:'Gen yon erè. Tanpri eseye ankò.',errUnavailable:'Pa disponib.',confLabelName:'Non',confLabelDate:'Dat',confLabelTime:'Lè',confirmSaved:'Randevou ou an ak Coach Leonidas anrejistre.'},
+  'Français':{apply:'POSTULER POUR UN APPEL',heroTitle:'VOUS VOULEZ APPRENDRE LE TRADING AVEC UN PLAN ADAPTÉ À VOUS ?',heroText:'Remplissez le formulaire. Après avoir étudié vos réponses, nous verrons si nous pouvons réellement vous aider. Si nous estimons que c’est possible, nous vous proposerons un appel privé avec Coach Leonidas afin de discuter de votre situation, de vos objectifs et de déterminer si notre accompagnement vous convient.',learningTitle:'Cet apprentissage repose sur',trainingTitle:'📚 Formation',trainingText:'Apprenez les fondamentaux avec une méthode structurée.',coachingTitle:'🎯 Coaching',coachingText:'Travaillez votre processus, votre discipline et votre plan de trading.',riskTitle:'🛡️ Gestion du risque',riskText:'Comprenez comment gérer votre risque sans promesse de profit garanti.',quizTitle:'COMMENCEZ VOTRE CANDIDATURE',quizIntro:'Choisissez la langue dans laquelle vous préférez remplir le formulaire afin de nous aider à comprendre votre expérience, vos objectifs et vos besoins en trading.',languageQuestion:'Dans quelle langue préférez-vous remplir le formulaire ?',changeLanguage:'Changer la langue que j’ai choisie',selectedLanguage:'Langue choisie : Français',q1:'1. Quel est votre niveau d’expérience en trading ?',q1a:'Je suis débutant',q1b:'J’ai déjà une certaine expérience',q1c:'J’ai déjà beaucoup d’expérience',q2:'2. Quel marché vous intéresse le plus ?',q2Unknown:'Je ne sais pas',countrySearchLabel:'Recherchez votre pays',countrySearchPlaceholder:'Rechercher un pays ou un code...',phoneHelp:'Sélectionnez votre pays, puis saisissez votre numéro sans le code pays.',invalidPhone:'Veuillez saisir un numéro de téléphone valide.',choose:'Choisir',bookingChooseDate:'Choisissez d’abord une date',multiMarkets:'Plusieurs marchés',q3:'3. Quelle est votre plus grande difficulté ?',q3a:'J’ai besoin d’une stratégie claire',q3b:'Gestion du risque',q3c:'Discipline / émotions',q3d:'Analyse des marchés',q4:'4. Quel est votre objectif principal ?',q4a:'Apprendre sérieusement le trading',q4b:'Améliorer ma façon de trader',q4c:'Construire un plan de trading',q5:'5. Combien de temps pouvez-vous consacrer chaque semaine à votre apprentissage ?',q5a:'1–3 heures',q5b:'4–7 heures',q5c:'8–15 heures',q5d:'15+ heures',q6:'6. Quel montant vous sentez-vous prêt et à l’aise d’investir pour progresser plus rapidement dans votre trading ?',q7:'7. Avez-vous déjà un plan de trading écrit ?',yes:'Oui',no:'Non',q8:'8. Quel type d’accompagnement préférez-vous ?',q9:'9. Vos coordonnées',namePlaceholder:'Nom et prénom',agePlaceholder:'Votre âge',ageSelectPlaceholder:'Choisissez votre tranche d’âge',age18to25:'18–25 ans',age25to30:'25–30 ans',age30to45:'30–45 ans',age45plus:'45 ans et plus',emailPlaceholder:'Email',phonePlaceholder:'WhatsApp / Téléphone',bookingTitle:'Prendre un rendez-vous avec Coach Leonidas',bookingText:'Votre candidature est enregistrée. Choisissez maintenant la date et l’heure de votre appel avec Coach Leonidas.',dateLabel:'1. Choisissez la date de l’appel',timeLabel:'2. Choisissez l’heure de l’appel',availability:'Disponibilité : De 10 h 00 à 18 h 00. Vous pouvez demander un rendez-vous à partir d’aujourd’hui et jusqu’aux 14 prochains jours. Important : Un créneau déjà réservé n’est plus disponible.',confirmBooking:'Confirmer le rendez-vous',supportOnly:'Formation uniquement',supportPlus:'Formation + coaching',supportPersonal:'Coaching plus personnalisé',under100:'Moins de 100 $',range300500:'300 $–500 $',range5001000:'500 $–1 000 $',range1000plus:'1 000 $+',finish:'Terminer ma candidature',confirmationTitle:'4. Confirmation',confirmationText:'Votre demande est enregistrée pour',footer:'EMPIRE DES SPATIATES — Formation & Coaching Trading',slotLoading:'Chargement des créneaux disponibles...',noSlots:'Aucun créneau disponible pour cette date.',slotTakenSuffix:' — pris',slotPastSuffix:' — passé',chooseDateTime:'Choisissez une date et une heure.',bookingSending:'Enregistrement en cours...',errSlotTaken:'Ce créneau vient d’être réservé par quelqu’un d’autre. Choisissez-en un autre.',errAlreadyBooked:'Vous avez déjà un rendez-vous enregistré.',errRange:'Les rendez-vous sont disponibles uniquement jusqu’à 14 jours à partir d’aujourd’hui.',errInvalidTime:'Ce créneau n’est pas valide.',errPastTime:'Ce créneau est déjà passé.',errRateLimited:'Trop de tentatives. Patientez une minute.',errMissing:'Veuillez remplir tous les champs obligatoires.',errNotFound:'Candidature introuvable.',errServer:'Une erreur est survenue. Veuillez réessayer.',errUnavailable:'Indisponible.',confLabelName:'Nom',confLabelDate:'Date',confLabelTime:'Heure',confirmSaved:'Votre rendez-vous avec Coach Leonidas est enregistré.'},
+  'English':{apply:'APPLY NOW',heroTitle:'APPLY TO LEARN TRADING WITH A PLAN ADAPTED TO YOUR GOALS',heroText:'Complete the form. After reviewing your answers, we will assess whether we can genuinely help you. If we believe we can, we will offer you a private call with Coach Leonidas to discuss your situation and goals and determine whether our coaching is a good fit for you.',learningTitle:'This learning is based on',trainingTitle:'📚 Training',trainingText:'Learn the fundamentals with a structured method.',coachingTitle:'🎯 Coaching',coachingText:'Work on your process, discipline, and trading plan.',riskTitle:'🛡️ Risk Management',riskText:'Understand how to manage risk without any promise of guaranteed profits.',quizTitle:'START YOUR APPLICATION',quizIntro:'Choose your preferred language to complete the form and help us understand your trading experience, goals, and needs.',languageQuestion:'Which language do you prefer to complete the form in?',changeLanguage:'Change my selected language',selectedLanguage:'Selected language: English',q1:'1. What is your level of trading experience?',q1a:'I am a beginner',q1b:'I have some experience',q1c:'I already have a lot of experience',q2:'2. Which market interests you most?',q2Unknown:"I don't know",countrySearchLabel:'Find your country',countrySearchPlaceholder:'Search a country or calling code...',phoneHelp:'Select your country, then enter your number without the country code.',invalidPhone:'Please enter a valid phone number.',choose:'Choose a date first',bookingChooseDate:'Choose a date first',multiMarkets:'Multiple markets',q3:'3. What is your biggest difficulty?',q3a:'I need a clear strategy',q3b:'Risk management',q3c:'Discipline / emotions',q3d:'Market analysis',q4:'4. What is your main goal?',q4a:'Learn trading seriously',q4b:'Improve the way I trade',q4c:'Build a trading plan',q5:'5. How much time can you dedicate to learning each week?',q5a:'1–3 hours',q5b:'4–7 hours',q5c:'8–15 hours',q5d:'15+ hours',q6:'6. How much money do you feel ready and comfortable investing to progress faster in your trading?',q7:'7. Do you already have a written trading plan?',yes:'Yes',no:'No',q8:'8. What type of support do you prefer?',q9:'9. Your contact information',namePlaceholder:'First & last name',agePlaceholder:'Your age',ageSelectPlaceholder:'Select your age range',age18to25:'18–25 years',age25to30:'25–30 years',age30to45:'30–45 years',age45plus:'45 years and over',emailPlaceholder:'Email',phonePlaceholder:'WhatsApp / Phone',bookingTitle:'Book an appointment with Coach Leonidas',bookingText:'Your application is saved. Now choose the date and time for your call with Coach Leonidas.',dateLabel:'1. Choose the call date',timeLabel:'2. Choose the call time',availability:'Availability: 10:00 AM to 6:00 PM. You can request an appointment from today through the next 14 days. Important: A time slot that has already been booked is no longer available.',confirmBooking:'Confirm appointment',supportOnly:'Training only',supportPlus:'Training + coaching',supportPersonal:'More personalized coaching',under100:'Less than $100',range300500:'$300–$500',range5001000:'$500–$1,000',range1000plus:'$1,000+',finish:'Complete my application',confirmationTitle:'4. Confirmation',confirmationText:'Your request is registered for',footer:'EMPIRE DES SPATIATES — Trading Training & Coaching',slotLoading:'Loading available times...',noSlots:'No available time slots for this date.',slotTakenSuffix:' — taken',slotPastSuffix:' — past',chooseDateTime:'Choose a date and a time.',bookingSending:'Saving your booking...',errSlotTaken:'Someone just booked this slot. Please choose another one.',errAlreadyBooked:'You already have an appointment booked.',errRange:'Appointments are available only up to 14 days from today.',errInvalidTime:'That time is not valid.',errPastTime:'That time has already passed.',errRateLimited:'Too many attempts. Please wait a minute.',errMissing:'Please fill in all required fields.',errNotFound:'Application not found.',errServer:'Something went wrong. Please try again.',errUnavailable:'Unavailable.',confLabelName:'Name',confLabelDate:'Date',confLabelTime:'Time',confirmSaved:'Your appointment with Coach Leonidas is confirmed.'}
+};
+const countries=[
+  ['HT','🇭🇹',{ 'Kreyòl':'Ayiti (HT)','Français':'Haïti (HT)','English':'Haiti (HT)'},'+509'],
+  ['US','🇺🇸',{ 'Kreyòl':'Etazini (USA)','Français':'États-Unis (USA)','English':'United States (USA)'},'+1'],
+  ['CA','🇨🇦',{ 'Kreyòl':'Kanada (CAN)','Français':'Canada (CAN)','English':'Canada (CAN)'},'+1'],
+  ['FR','🇫🇷',{ 'Kreyòl':'Lafrans (FRA)','Français':'France (FRA)','English':'France (FRA)'},'+33'],
+  ['DO','🇩🇴',{ 'Kreyòl':'Repiblik Dominikèn (DOM)','Français':'République dominicaine (DOM)','English':'Dominican Republic (DOM)'},'+1'],
+  ['JM','🇯🇲',{ 'Kreyòl':'Jamayik (JAM)','Français':'Jamaïque (JAM)','English':'Jamaica (JAM)'},'+1'],
+  ['GB','🇬🇧',{ 'Kreyòl':'Wayòm Ini (GBR)','Français':'Royaume-Uni (GBR)','English':'United Kingdom (GBR)'},'+44'],
+  ['BE','🇧🇪',{ 'Kreyòl':'Bèljik (BEL)','Français':'Belgique (BEL)','English':'Belgium (BEL)'},'+32'],
+  ['CH','🇨🇭',{ 'Kreyòl':'Swis (CHE)','Français':'Suisse (CHE)','English':'Switzerland (CHE)'},'+41'],
+  ['DE','🇩🇪',{ 'Kreyòl':'Almay (DEU)','Français':'Allemagne (DEU)','English':'Germany (DEU)'},'+49'],
+  ['ES','🇪🇸',{ 'Kreyòl':'Espay (ESP)','Français':'Espagne (ESP)','English':'Spain (ESP)'},'+34'],
+  ['IT','🇮🇹',{ 'Kreyòl':'Itali (ITA)','Français':'Italie (ITA)','English':'Italy (ITA)'},'+39'],
+  ['PT','🇵🇹',{ 'Kreyòl':'Pòtigal (PRT)','Français':'Portugal (PRT)','English':'Portugal (PRT)'},'+351'],
+  ['BR','🇧🇷',{ 'Kreyòl':'Brezil (BRA)','Français':'Brésil (BRA)','English':'Brazil (BRA)'},'+55'],
+  ['MX','🇲🇽',{ 'Kreyòl':'Meksik (MEX)','Français':'Mexique (MEX)','English':'Mexico (MEX)'},'+52'],
+  ['CO','🇨🇴',{ 'Kreyòl':'Kolonbi (COL)','Français':'Colombie (COL)','English':'Colombia (COL)'},'+57'],
+  ['AR','🇦🇷',{ 'Kreyòl':'Ajantin (ARG)','Français':'Argentine (ARG)','English':'Argentina (ARG)'},'+54'],
+  ['CL','🇨🇱',{ 'Kreyòl':'Chili (CHL)','Français':'Chili (CHL)','English':'Chile (CHL)'},'+56'],
+  ['PE','🇵🇪',{ 'Kreyòl':'Pewou (PER)','Français':'Pérou (PER)','English':'Peru (PER)'},'+51'],
+  ['VE','🇻🇪',{ 'Kreyòl':'Venezyela (VEN)','Français':'Venezuela (VEN)','English':'Venezuela (VEN)'},'+58'],
+  ['MA','🇲🇦',{ 'Kreyòl':'Mawòk (MAR)','Français':'Maroc (MAR)','English':'Morocco (MAR)'},'+212'],
+  ['DZ','🇩🇿',{ 'Kreyòl':'Aljeri (DZA)','Français':'Algérie (DZA)','English':'Algeria (DZA)'},'+213'],
+  ['SN','🇸🇳',{ 'Kreyòl':'Senegal (SEN)','Français':'Sénégal (SEN)','English':'Senegal (SEN)'},'+221'],
+  ['CI','🇨🇮',{ 'Kreyòl':'Kòtdivwa (CIV)','Français':'Côte d’Ivoire (CIV)','English':'Côte d’Ivoire (CIV)'},'+225'],
+  ['GH','🇬🇭',{ 'Kreyòl':'Gana (GHA)','Français':'Ghana (GHA)','English':'Ghana (GHA)'},'+233'],
+  ['NG','🇳🇬',{ 'Kreyòl':'Nijerya (NGA)','Français':'Nigéria (NGA)','English':'Nigeria (NGA)'},'+234'],
+  ['ZA','🇿🇦',{ 'Kreyòl':'Afrik di Sid (ZAF)','Français':'Afrique du Sud (ZAF)','English':'South Africa (ZAF)'},'+27'],
+  ['CM','🇨🇲',{ 'Kreyòl':'Kamewoun (CMR)','Français':'Cameroun (CMR)','English':'Cameroon (CMR)'},'+237'],
+  ['RW','🇷🇼',{ 'Kreyòl':'Rwanda (RWA)','Français':'Rwanda (RWA)','English':'Rwanda (RWA)'},'+250'],
+  ['AE','🇦🇪',{ 'Kreyòl':'Emira Arab Ini (ARE)','Français':'Émirats arabes unis (ARE)','English':'United Arab Emirates (ARE)'},'+971'],
+  ['IN','🇮🇳',{ 'Kreyòl':'Lend (IND)','Français':'Inde (IND)','English':'India (IND)'},'+91'],
+  ['CN','🇨🇳',{ 'Kreyòl':'Lachin (CHN)','Français':'Chine (CHN)','English':'China (CHN)'},'+86'],
+  ['JP','🇯🇵',{ 'Kreyòl':'Japon (JPN)','Français':'Japon (JPN)','English':'Japan (JPN)'},'+81'],
+  ['KR','🇰🇷',{ 'Kreyòl':'Kore di Sid (KOR)','Français':'Corée du Sud (KOR)','English':'South Korea (KOR)'},'+82'],
+  ['AU','🇦🇺',{ 'Kreyòl':'Ostrali (AUS)','Français':'Australie (AUS)','English':'Australia (AUS)'},'+61'],
+  ['NZ','🇳🇿',{ 'Kreyòl':'Nouvèl Zeland (NZL)','Français':'Nouvelle-Zélande (NZL)','English':'New Zealand (NZL)'},'+64'],
+  ['TR','🇹🇷',{ 'Kreyòl':'Latiki (TUR)','Français':'Turquie (TUR)','English':'Turkey (TUR)'},'+90'],
+  ['NL','🇳🇱',{ 'Kreyòl':'Peyi Ba (NLD)','Français':'Pays-Bas (NLD)','English':'Netherlands (NLD)'},'+31'],
+  ['SE','🇸🇪',{ 'Kreyòl':'Syèd (SWE)','Français':'Suède (SWE)','English':'Sweden (SWE)'},'+46'],
+  ['NO','🇳🇴',{ 'Kreyòl':'Nòvèj (NOR)','Français':'Norvège (NOR)','English':'Norway (NOR)'},'+47'],
+  ['IE','🇮🇪',{ 'Kreyòl':'Iland (IRL)','Français':'Irlande (IRL)','English':'Ireland (IRL)'},'+353'],
+  ['LU','🇱🇺',{ 'Kreyòl':'Liksanbou (LUX)','Français':'Luxembourg (LUX)','English':'Luxembourg (LUX)'},'+352'],
+  ['PA','🇵🇦',{ 'Kreyòl':'Panama (PAN)','Français':'Panama (PAN)','English':'Panama (PAN)'},'+507'],
+  ['PR','🇵🇷',{ 'Kreyòl':'Pòtoriko (PRI)','Français':'Porto Rico (PRI)','English':'Puerto Rico (PRI)'},'+1']
+];
+function renderCountries(lang,filter=''){
+  const codeEl=$('countryCode'), optionsEl=$('countryOptions'), selectedEl=$('countrySelected'); if(!codeEl||!optionsEl)return;
+  const q=(filter||'').trim().toLowerCase();
+  const matches=countries.filter(([iso,flag,names,code])=>{
+    const hay=(iso+' '+code+' '+Object.values(names).join(' ')).toLowerCase();
+    return !q||hay.includes(q);
+  });
+  const previous=codeEl.value||'HT';
+  if(!matches.length){optionsEl.innerHTML='<div class="small" style="padding:12px">Aucun pays trouvé</div>';return;}
+  optionsEl.innerHTML=matches.map(([iso,flag,names,code])=>'<button type="button" class="country-option" data-iso="'+iso+'" role="option">'+flag+' '+names[lang]+' '+code+'</button>').join('');
+  const activeIso=matches.some(c=>c[0]===previous)?previous:matches[0][0];
+  codeEl.value=activeIso;
+  const active=countries.find(c=>c[0]===activeIso)||countries[0];
+  if($('countryName'))$('countryName').value=active[2][lang]||active[2]['Kreyòl'];
+  if($('dialCode'))$('dialCode').value=active[3];
+  if(selectedEl)selectedEl.textContent=active[1]+' '+active[2][lang]+' '+active[3];
+  optionsEl.querySelectorAll('.country-option').forEach(btn=>{
+    if(btn.dataset.iso===activeIso)btn.classList.add('active');
+    btn.addEventListener('click',()=>{
+      codeEl.value=btn.dataset.iso;
+      const c=countries.find(x=>x[0]===btn.dataset.iso)||countries[0];
+      if($('countryName'))$('countryName').value=c[2][lang]||c[2]['Kreyòl'];
+      if($('dialCode'))$('dialCode').value=c[3];
+      if(selectedEl)selectedEl.textContent=c[1]+' '+c[2][lang]+' '+c[3];
+      $('countryMenu').classList.add('hidden');
+      $('countryTrigger').setAttribute('aria-expanded','false');
+      $('countrySearch').value='';
+      renderCountries(currentLang,'');
+    });
+  });
+}
+function selectedCountry(){const iso=$('countryCode')?.value;return countries.find(c=>c[0]===iso)||countries[0];}
+function buildFullPhone(){const c=selectedCountry();const local=($('phoneNumber')?.value||'').replace(/\D/g,'');return c[3]+local;}
+function applyLanguage(lang){currentLang=lang;const t=translations[lang]||translations['Kreyòl'];document.documentElement.lang=lang==='Kreyòl'?'ht':lang==='Français'?'fr':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n]!=null)el.textContent=t[el.dataset.i18n]});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{if(t[el.dataset.i18nPlaceholder]!=null)el.placeholder=t[el.dataset.i18nPlaceholder]});$('selectedLanguage').textContent=t.selectedLanguage;document.querySelectorAll('#quizForm select option').forEach(o=>{if(o.dataset.i18n&&t[o.dataset.i18n]!=null)o.textContent=t[o.dataset.i18n];else if(o.value==='')o.textContent=t.choose});const multi=document.querySelector('#quizForm select[name="q2"] option[data-i18n="multiMarkets"]');if(multi)multi.textContent=t.multiMarkets;const unknown=document.querySelector('#quizForm select[name="q2"] option[data-i18n="q2Unknown"]');if(unknown)unknown.textContent=t.q2Unknown;renderCountries(lang,$('countrySearch')?.value||'');}
+function showQuizLanguage(lang){$('language').value=lang;applyLanguage(lang);$('languageScreen').classList.add('hidden');$('quizForm').classList.remove('hidden');$('quizForm').scrollIntoView({behavior:'smooth',block:'start'});}
+document.querySelectorAll('.langChoice').forEach(btn=>btn.addEventListener('click',()=>showQuizLanguage(btn.dataset.lang)));
+$('countryTrigger').addEventListener('click',()=>{const menu=$('countryMenu');const open=menu.classList.contains('hidden');menu.classList.toggle('hidden');$('countryTrigger').setAttribute('aria-expanded',String(open));if(open){setTimeout(()=>$('countrySearch').focus(),50)}});
+$('countrySearch').addEventListener('input',()=>renderCountries(currentLang,$('countrySearch').value));
+document.addEventListener('click',e=>{if(!e.target.closest('#countryPicker')){$('countryMenu').classList.add('hidden');$('countryTrigger').setAttribute('aria-expanded','false')}});
+renderCountries(currentLang,'');
+$('changeLanguage').addEventListener('click',()=>{$('quizForm').classList.add('hidden');$('languageScreen').classList.remove('hidden');$('languageScreen').scrollIntoView({behavior:'smooth',block:'start'});});
+$('quizForm').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target),payload=Object.fromEntries(f.entries());const c=selectedCountry();payload.age=String(payload.age||'').trim();payload.countryCode=c[0];payload.countryName=c[2][currentLang]||c[2]['Kreyòl'];payload.dialCode=c[3];payload.phone=buildFullPhone();$('phone').value=payload.phone;if(!/^\+\d{6,15}$/.test(payload.phone)){ $('result').className='notice error'; $('result').textContent=T('invalidPhone','Please enter a valid phone number.'); $('result').classList.remove('hidden'); return; }const r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const x=await r.json().catch(()=>({}));if(!r.ok){$('result').className='notice error';$('result').textContent=errText(x);$('result').classList.remove('hidden');return}try{sessionStorage.setItem('bookingLead',JSON.stringify({id:x.id,name:payload.name||'',age:payload.age||'',phone:payload.phone||'',language:currentLang}))}catch(e){}window.location.assign('/booking.html?leadId='+encodeURIComponent(x.id)+'&lang='+encodeURIComponent(currentLang));});</script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — Empire des Spatiates</title>
+<style>
+:root{--bg:#05090f;--panel:#0b111b;--panel2:#0e1622;--line:#1b2737;--text:#f4f7fb;--muted:#8996aa;--gold:#e7b84b;--gold2:#f5cf70;--green:#20c997;--blue:#4da3ff;--red:#ff5d6c;--orange:#f2ad4a;--shadow:0 18px 50px rgba(0,0,0,.28);--r:18px}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:radial-gradient(circle at 70% -10%,rgba(231,184,75,.08),transparent 30%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.wrap{min-height:100vh;display:grid;grid-template-columns:250px 1fr}.sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#080d15,#070b12);border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;z-index:10}.brand{padding:4px 10px 22px;border-bottom:1px solid var(--line);margin-bottom:18px}.brandmark{width:42px;height:42px;border:1px solid rgba(231,184,75,.45);border-radius:12px;display:grid;place-items:center;color:var(--gold);font-size:22px;background:rgba(231,184,75,.06);float:left;margin-right:10px}.brand strong{display:block;padding-top:1px;font-size:15px;letter-spacing:.02em}.brand span{display:block;color:var(--muted);font-size:11px;margin-top:2px}.nav{display:flex;flex-direction:column;gap:6px}.nav button{border:0;background:transparent;color:#aeb9ca;text-align:left;padding:12px 12px;border-radius:12px;width:100%;display:flex;align-items:center;gap:11px}.nav button:hover,.nav button.active{background:linear-gradient(90deg,rgba(231,184,75,.16),rgba(231,184,75,.04));color:#fff}.nav .ico{width:20px;text-align:center;opacity:.9}.nav .active .ico{color:var(--gold)}.sideBottom{margin-top:auto;border-top:1px solid var(--line);padding-top:14px}.external{margin-top:12px;display:grid;gap:7px}.external a{color:#9eabc0;text-decoration:none;padding:9px 10px;border-radius:10px;background:#0b121d}.external a:hover{color:#fff;background:#101a28}.main{min-width:0;padding:20px 24px 50px}.topbar{height:64px;display:flex;align-items:center;gap:14px;margin-bottom:24px}.search{flex:1;max-width:520px;position:relative}.search input{width:100%;height:44px;border:1px solid var(--line);background:#0a111b;color:#fff;border-radius:12px;padding:0 16px 0 40px;outline:none}.search input:focus{border-color:rgba(231,184,75,.6);box-shadow:0 0 0 3px rgba(231,184,75,.08)}.search span{position:absolute;left:14px;top:10px;color:var(--muted)}.topSpacer{flex:1}.topDate{color:var(--muted);font-size:12px;text-align:right}.topDate b{display:block;color:#e8edf5;font-size:13px}.circleBtn{width:42px;height:42px;border:1px solid var(--line);background:#0b121c;color:#dbe3ef;border-radius:12px;position:relative}.badge{position:absolute;right:-3px;top:-5px;background:var(--red);color:#fff;min-width:18px;height:18px;border-radius:999px;font-size:10px;display:grid;place-items:center;border:2px solid var(--bg)}.admin{display:flex;align-items:center;gap:9px;padding-left:8px}.avatar{width:38px;height:38px;border-radius:50%;border:1px solid #39475b;background:linear-gradient(135deg,#26364d,#0c121c);display:grid;place-items:center}.admin b{display:block;font-size:12px}.admin span{display:block;font-size:11px;color:var(--muted)}.hero{display:flex;align-items:end;gap:16px;margin-bottom:20px}.hero h1{margin:0;font-size:29px;letter-spacing:-.03em}.hero p{margin:4px 0 0;color:var(--muted)}.heroRight{margin-left:auto;text-align:right;color:var(--muted);font-size:12px}.heroRight strong{color:var(--gold2)}.grid6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat{background:linear-gradient(145deg,#0c1520,#09101a);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-height:122px}.stat .label{color:#8f9bae;font-size:11px;text-transform:uppercase;letter-spacing:.07em}.stat .num{font-size:29px;font-weight:800;margin:10px 0 5px;letter-spacing:-.03em}.trend{font-size:11px}.trend.up{color:var(--green)}.trend.neutral{color:var(--muted)}.stat.gold{border-color:rgba(231,184,75,.25)}.stat.gold .num{color:var(--gold2)}.layout2{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.75fr);gap:18px;margin-bottom:18px}.card{background:linear-gradient(145deg,rgba(13,21,32,.98),rgba(8,14,22,.98));border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.cardHead{display:flex;align-items:center;gap:10px;padding:17px 18px;border-bottom:1px solid var(--line)}.cardHead h2{font-size:15px;margin:0;flex:1}.cardHead a,.cardHead button{color:var(--gold2);background:none;border:0;text-decoration:none;font-size:12px}.chartBox{padding:12px 18px 18px;height:290px}.chart{width:100%;height:250px;display:block}.legend{display:flex;gap:18px;color:var(--muted);font-size:11px;margin-top:-2px}.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.appointments{padding:2px 18px 10px}.appt{display:grid;grid-template-columns:65px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}.appt:last-child{border-bottom:0}.time{font-size:15px;font-weight:800;color:#fff}.appt b{font-size:13px}.appt span{display:block;color:var(--muted);font-size:11px}.pill{display:inline-flex!important;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;font-size:10px!important;font-weight:700!important;background:#172131;color:#aeb9c9!important;white-space:nowrap}.pill.ok{background:rgba(32,201,151,.12);color:#44dfb0!important}.pill.warn{background:rgba(242,173,74,.12);color:#f4bd65!important}.pill.bad{background:rgba(255,93,108,.12);color:#ff7884!important}.pill.info{background:rgba(77,163,255,.12);color:#69b3ff!important}.bottomGrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:18px}.tableWrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:720px}.table th{padding:12px 14px;color:#77869c;text-transform:uppercase;letter-spacing:.06em;font-size:10px;text-align:left;border-bottom:1px solid var(--line)}.table td{padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.055);vertical-align:middle}.table tr:hover td{background:rgba(255,255,255,.018)}.candidate{display:flex;align-items:center;gap:10px}.miniAvatar{width:34px;height:34px;border-radius:10px;background:#182334;border:1px solid #263449;display:grid;place-items:center;color:var(--gold2);font-size:12px;font-weight:800}.candidate b{font-size:12px}.candidate span{display:block;color:var(--muted);font-size:10px}.score{font-weight:800}.score.good{color:var(--green)}.score.mid{color:var(--gold2)}.score.low{color:var(--red)}.actions{display:flex;gap:6px}.ghost,.goldBtn,.dangerBtn,.okBtn{border-radius:9px;padding:7px 10px;border:1px solid var(--line);background:#111a27;color:#d9e2ee;font-size:11px}.goldBtn{background:linear-gradient(135deg,#d8a83e,#f0c65d);border:0;color:#10100b;font-weight:800}.okBtn{background:rgba(32,201,151,.12);color:#43ddb0;border-color:rgba(32,201,151,.2)}.dangerBtn{background:rgba(255,93,108,.1);color:#ff7884;border-color:rgba(255,93,108,.2)}.ghost:hover,.goldBtn:hover,.okBtn:hover,.dangerBtn:hover{filter:brightness(1.1)}.sideCards{display:grid;gap:18px}.calendar{padding:14px 16px}.month{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.month b{font-size:13px}.month button{border:0;background:none;color:var(--muted)}.week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.week span{font-size:9px;text-align:center;color:#66748a;padding:5px 0}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;color:#aeb9ca;font-size:10px;position:relative}.day.dot:after{content:"";width:4px;height:4px;background:var(--gold);border-radius:50%;position:absolute;bottom:4px}.day.today{background:var(--gold);color:#090b0e;font-weight:800}.day.empty{visibility:hidden}.day.busy{background:#142235}.quickLinks{padding:4px 16px 16px}.quickLink{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:#dce4ef}.quickLink:last-child{border-bottom:0}.quickLink .qicon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#131f2e;color:var(--gold2)}.quickLink small{display:block;color:var(--muted);font-size:10px}.quickLink b{font-size:11px}.view{display:none}.view.active{display:block}.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px}.toolbar h2{margin:0;flex:1}.toolbar input,.toolbar select{height:40px;border:1px solid var(--line);background:#0a111a;color:#eaf0f7;border-radius:10px;padding:0 11px;outline:none}.toolbar input{width:260px}.toolbar select{width:auto}.fullCard{padding:18px}.calGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.calDay{border:1px solid var(--line);border-radius:13px;background:#0b131e;overflow:hidden}.calDayHead{padding:10px 12px;background:#101a28;font-size:11px;font-weight:700}.slot{display:flex;justify-content:space-between;padding:8px 11px;border-top:1px solid rgba(255,255,255,.045);font-size:11px}.slot.free{color:var(--green)}.slot.busy{color:#9fcaff;background:rgba(77,163,255,.05)}.slot.past{color:#4e5a6d;text-decoration:line-through}.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:flex-start;justify-content:center;padding:35px 16px;overflow:auto;z-index:50}.modalPanel{width:min(780px,100%);background:#0b121c;border:1px solid #263449;border-radius:18px;box-shadow:0 30px 100px #000;padding:22px}.answers{display:grid;grid-template-columns:180px 1fr;gap:8px 14px}.answers dt{color:var(--muted);font-size:12px}.answers dd{margin:0;font-size:12px}.modalPanel h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#77869c;margin:22px 0 9px}.modalPanel textarea,.modalPanel select{width:100%;border:1px solid var(--line);background:#07101a;color:#fff;border-radius:10px;padding:10px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;background:#e7b84b;color:#10100b;font-weight:800;padding:11px 17px;border-radius:10px;box-shadow:0 12px 40px #000}.toast.bad{background:var(--red);color:#fff}.banner{background:rgba(242,173,74,.1);border:1px solid rgba(242,173,74,.22);color:#f5bd66;padding:10px 13px;border-radius:10px;margin-bottom:16px;font-size:12px}
+@media(max-width:1250px){.grid6{grid-template-columns:repeat(3,1fr)}}@media(max-width:1000px){.wrap{grid-template-columns:82px 1fr}.sidebar{padding:18px 10px}.brand{padding-left:5px;padding-right:5px}.brandmark{float:none;margin:0 auto 8px}.brand strong,.brand span{display:none}.nav button{justify-content:center}.nav button .txt{display:none}.sideBottom,.external{display:none}.layout2,.bottomGrid{grid-template-columns:1fr}.topDate,.admin div{display:none}}@media(max-width:700px){.main{padding:14px}.grid6{grid-template-columns:repeat(2,1fr)}.hero{display:block}.heroRight{text-align:left;margin-top:8px}.topbar{height:auto}.search{max-width:none}.topDate{display:none}.answers{grid-template-columns:1fr}.grid6 .stat{min-height:105px}.stat .num{font-size:24px}}@media(max-width:480px){.wrap{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px}.brand{display:none}.nav{flex-direction:row;overflow:auto}.nav button{min-width:46px}.sideBottom{display:none}.grid6{grid-template-columns:1fr 1fr}.admin{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">♛</div><strong>EMPIRE DES SPATIATES</strong><span>Discipline · Stratégie · Réussite</span></div>
+  <nav class="nav">
+    <button class="active" data-view="overview"><span class="ico">⌂</span><span class="txt">Tableau de bord</span></button>
+    <button data-view="leads"><span class="ico">♙</span><span class="txt">Candidats</span></button>
+    <button data-view="bookings"><span class="ico">◷</span><span class="txt">Rendez-vous</span></button>
+    <button data-view="calendar"><span class="ico">▦</span><span class="txt">Calendrier</span></button>
+  </nav>
+  <div class="sideBottom">
+    <div class="external">
+      <a href="/" target="_blank">↗ Page candidature</a>
+      <a href="/booking" target="_blank">↗ Page rendez-vous</a>
+    </div>
+    <button id="logoutBtn" class="ghost" style="width:100%;margin-top:12px">Déconnexion</button>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Rechercher un candidat, un rendez-vous…"></div>
+    <div class="topSpacer"></div>
+    <div class="topDate"><b id="topDate">—</b><span id="topTime">—</span></div>
+    <button class="circleBtn" id="notificationBtn">♧<span id="notificationCount" class="badge hidden">0</span></button>
+    <div class="admin"><div class="avatar">A</div><div><b>Admin</b><span>Administrateur</span></div></div>
+  </header>
+
+  <div id="defaultPassWarn" class="banner hidden">Le mot de passe administrateur par défaut est encore actif. Changez-le avant de publier le site.</div>
+
+  <section id="view-overview" class="view active">
+    <div class="hero"><div><h1>Bonjour Admin</h1><p>Voici l'activité de ton Empire des Spatiates aujourd'hui.</p></div><div class="heroRight"><strong id="heroStatus">Système connecté</strong><br><span id="envLine">Chargement des données…</span></div></div>
+
+    <div class="grid6">
+      <div class="stat gold"><div class="label">Total candidats</div><div class="num" id="kLeads">0</div><div class="trend neutral">Toutes candidatures</div></div>
+      <div class="stat"><div class="label">Nouveaux</div><div class="num" id="kNew">0</div><div class="trend up">À traiter</div></div>
+      <div class="stat"><div class="label">Qualifiés</div><div class="num" id="kQualified">0</div><div class="trend up">Pipeline</div></div>
+      <div class="stat"><div class="label">Rendez-vous</div><div class="num" id="kBookings">0</div><div class="trend neutral">Actifs</div></div>
+      <div class="stat"><div class="label">Aujourd'hui</div><div class="num" id="todayCount">0</div><div class="trend neutral">Rendez-vous</div></div>
+      <div class="stat"><div class="label">Créneaux libres</div><div class="num" id="kFree">0</div><div class="trend up">Disponibles</div></div>
+    </div>
+
+    <div class="layout2">
+      <section class="card">
+        <div class="cardHead"><h2>Évolution de l'activité</h2><span class="muted small">7 derniers jours</span></div>
+        <div class="chartBox"><canvas id="activityChart" class="chart"></canvas><div class="legend"><span><i style="background:var(--gold)"></i>Candidatures</span><span><i style="background:var(--blue)"></i>Rendez-vous créés</span></div></div>
+      </section>
+      <section class="card">
+        <div class="cardHead"><h2>Prochains rendez-vous</h2><button data-view="bookings">Voir tout →</button></div>
+        <div id="upcomingAppointments" class="appointments"></div>
+      </section>
+    </div>
+
+    <div class="bottomGrid">
+      <section class="card">
+        <div class="cardHead"><h2>Candidatures récentes</h2><button data-view="leads">Voir tous →</button></div>
+        <div class="tableWrap" id="recentLeads"></div>
+      </section>
+      <div class="sideCards">
+        <section class="card"><div class="cardHead"><h2>Calendrier</h2><button data-view="calendar">Ouvrir →</button></div><div class="calendar" id="miniCalendar"></div></section>
+        <section class="card"><div class="cardHead"><h2>Accès rapides</h2></div><div class="quickLinks">
+          <a class="quickLink" href="/" target="_blank"><span class="qicon">♙</span><span><b>Page candidature</b><small>Voir le formulaire public</small></span></a>
+          <a class="quickLink" href="/booking" target="_blank"><span class="qicon">◷</span><span><b>Page rendez-vous</b><small>Voir le parcours de réservation</small></span></a>
+          <button class="quickLink" id="refreshQuick" style="width:100%;border:0;background:none;text-align:left"><span class="qicon">↻</span><span><b>Actualiser les données</b><small>Synchroniser avec le serveur</small></span></button>
+        </div></section>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-leads" class="view">
+    <div class="toolbar"><h2>Candidats</h2><input id="search" placeholder="Nom, email, WhatsApp, langue…"><select id="filterStatus"><option value="">Tous les statuts</option><option value="new">Nouveau</option><option value="contacted">Contacté</option><option value="qualified">Qualifié</option><option value="converted">Converti</option><option value="lost">Perdu</option></select><button class="goldBtn" id="csvLeads">Export CSV</button></div>
+    <section class="card"><div class="tableWrap" id="leadsTable"></div></section>
+  </section>
+
+  <section id="view-bookings" class="view">
+    <div class="toolbar"><h2>Rendez-vous</h2><label class="small muted"><input type="checkbox" id="showCancelled"> Afficher les annulés</label><button class="goldBtn" id="csvBookings">Export CSV</button></div>
+    <section class="card"><div class="tableWrap" id="bookingsTable"></div></section>
+  </section>
+
+  <section id="view-calendar" class="view">
+    <div class="toolbar"><h2>Calendrier des 14 prochains jours</h2><span class="small muted">Vert = libre · Bleu = réservé · Gris = passé</span></div>
+    <section class="card fullCard"><div class="calGrid" id="calendar"></div></section>
+  </section>
+</main>
+</div>
+<div id="modal" class="modal hidden"><div class="modalPanel" id="modalPanel"></div></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);let token='';let data={leads:[],bookings:[],calendar:[],times:[],window:{}};
+const LEAD_STATUS={new:'Nouveau',contacted:'Contacté',qualified:'Qualifié',converted:'Converti',lost:'Perdu'};
+const BOOK_STATUS={pending:'À confirmer',confirmed:'Confirmé',cancelled:'Annulé'};const BOOK_PILL={pending:'warn',confirmed:'ok',cancelled:'bad'};
+const Q_LABELS={q1:'1. Niveau d’expérience',q2:'2. Marché préféré',q3:'3. Plus grande difficulté',q4:'4. Objectif principal',q5:'5. Temps par semaine',q6:'6. Budget envisagé',q7:'7. Plan de trading écrit',q8:'8. Type d’accompagnement'};
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function digits(v){return String(v||'').replace(/\D/g,'')}
+function toast(msg,bad){const e=document.createElement('div');e.className='toast'+(bad?' bad':'');e.textContent=msg;document.body.appendChild(e);setTimeout(()=>e.remove(),3000)}
+function fmtDate(iso){try{return new Date(iso+'T12:00:00').toLocaleDateString('fr-FR',{weekday:'short',day:'2-digit',month:'short'})}catch(e){return iso}}
+function fmtDateTime(iso){try{return new Date(iso).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'})}catch(e){return iso||'—'}}
+async function api(path,opts){const o=Object.assign({headers:{}},opts||{});o.headers=Object.assign({Authorization:'Bearer '+token},o.headers);if(o.body)o.headers['Content-Type']='application/json';const r=await fetch(path,o);if(r.status===401){logout();throw new Error('Session expirée')}const x=await r.json().catch(()=>({}));if(!r.ok)throw Object.assign(new Error(x.error||'Erreur'),{code:x.code,payload:x});return x}
+function logout(){fetch('/api/admin/logout',{method:'POST',headers:{Authorization:'Bearer '+token}}).catch(()=>{});token='';try{sessionStorage.removeItem('adm')}catch(e){}location.href='/admin'}
+function todayKey(){try{return new Intl.DateTimeFormat('en-CA',{timeZone:data.timezone||'America/Port-au-Prince',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
+function updateClock(){const now=new Date();$('topDate').textContent=now.toLocaleDateString('fr-FR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});$('topTime').textContent=now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}setInterval(updateClock,1000);updateClock();
+async function load(){data=await api('/api/admin/data');const active=data.bookings.filter(b=>b.status!=='cancelled');$('kLeads').textContent=data.leads.length;$('kNew').textContent=data.leads.filter(l=>l.status==='new').length;$('kQualified').textContent=data.leads.filter(l=>l.status==='qualified').length;$('kBookings').textContent=active.length;const today=todayKey();$('todayCount').textContent=active.filter(b=>b.date===today).length;$('kFree').textContent=data.calendar.reduce((n,d)=>n+d.slots.filter(s=>s.available).length,0);$('envLine').textContent='Stockage : '+data.engine+' · Fuseau : '+data.timezone;renderOverview();renderLeads();renderBookings();renderCalendar();detectNewBookings()}
+function bookingOf(id){return data.bookings.find(b=>b.leadId===id&&b.status!=='cancelled')||null}
+function initials(name){return String(name||'??').split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+function scoreClass(s){s=Number(s||0);return s>=3?'good':s>=2?'mid':'low'}
+function renderLeads(){const q=($('search').value||$('globalSearch').value||'').toLowerCase().trim(),st=$('filterStatus').value;const rows=data.leads.filter(l=>(!st||l.status===st)&&(!q||[l.name,l.age,l.email,l.phone,l.countryName,l.countryCode,l.dialCode,l.language,l.q1,l.q2,l.q3,l.q4,l.q5,l.q6,l.q7,l.q8,l.notes].join(' ').toLowerCase().includes(q)));$('leadsTable').innerHTML=!rows.length?'<div style="padding:30px;text-align:center" class="muted">Aucun candidat ne correspond.</div>':'<table class="table"><thead><tr><th>Candidat</th><th>Âge</th><th>Pays</th><th>Langue</th><th>Score</th><th>Candidature</th><th>Rendez-vous</th><th>Statut</th><th></th></tr></thead><tbody>'+rows.map(l=>{const b=bookingOf(l.id),sc=Number(l.score||0);return '<tr><td><div class="candidate"><div class="miniAvatar">'+initials(l.name)+'</div><div><b>'+esc(l.name)+'</b><span>'+esc(l.email)+'</span></div></div></td><td><span class="pill">'+esc(l.age||'—')+'</span></td><td><span class="pill">'+(l.countryName?esc(l.countryName)+' '+(l.dialCode?'('+esc(l.dialCode)+')':''):'—')+'</span></td><td><span class="pill">'+esc(l.language||'—')+'</span></td><td><span class="score '+scoreClass(sc)+'">'+sc+'/3</span></td><td class="small muted">'+fmtDateTime(l.createdAt)+'</td><td>'+(b?'<b>'+fmtDate(b.date)+'</b><br><span class="small muted">'+esc(b.time)+'</span>':'<span class="muted small">Aucun</span>')+'</td><td><select data-lead-status="'+l.id+'" style="background:#101a27;color:#dce4ef;border:1px solid #233247;border-radius:8px;padding:6px;font-size:11px">'+Object.keys(LEAD_STATUS).map(k=>'<option value="'+k+'"'+(l.status===k?' selected':'')+'>'+LEAD_STATUS[k]+'</option>').join('')+'</select></td><td><button class="ghost" data-open-lead="'+l.id+'">Détails</button></td></tr>'}).join('')+'</tbody></table>'}
+function renderBookings(){const show=$('showCancelled').checked;const rows=data.bookings.filter(b=>show||b.status!=='cancelled').sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));$('bookingsTable').innerHTML=!rows.length?'<div style="padding:30px;text-align:center" class="muted">Aucun rendez-vous.</div>':'<table class="table"><thead><tr><th>Date</th><th>Heure</th><th>Candidat</th><th>Âge</th><th>Pays</th><th>Langue</th><th>Score</th><th>Statut</th><th>Actions</th></tr></thead><tbody>'+rows.map(b=>{const l=data.leads.find(v=>v.id===b.leadId)||{},sc=Number(l.score||0);return '<tr><td><b>'+fmtDate(b.date)+'</b><br><span class="small muted">'+esc(b.date)+'</span></td><td><b>'+esc(b.time)+'</b></td><td><div class="candidate"><div class="miniAvatar">'+initials(l.name)+'</div><div><b>'+esc(l.name||'—')+'</b><span>'+esc(l.phone||l.email||'')+'</span></div></div></td><td><span class="pill">'+esc(l.age||'—')+'</span></td><td><span class="pill">'+(l.countryName?esc(l.countryName)+' '+(l.dialCode?'('+esc(l.dialCode)+')':''):'—')+'</span></td><td><span class="pill">'+esc(l.language||'—')+'</span></td><td><span class="score '+scoreClass(sc)+'">'+sc+'/3</span></td><td><span class="pill '+BOOK_PILL[b.status]+'">'+BOOK_STATUS[b.status]+'</span></td><td><div class="actions"><button class="ghost" data-open-lead="'+b.leadId+'">Détails</button>'+(b.status!=='confirmed'?'<button class="okBtn" data-book-status="'+b.id+'" data-to="confirmed">Confirmer</button>':'')+'<button class="ghost" data-reschedule="'+b.id+'">Déplacer</button>'+(b.status!=='cancelled'?'<button class="dangerBtn" data-book-status="'+b.id+'" data-to="cancelled">Annuler</button>':'<button class="ghost" data-book-status="'+b.id+'" data-to="pending">Rétablir</button>')+'</div></td></tr>'}).join('')+'</tbody></table>'}
+function renderCalendar(){ $('calendar').innerHTML=data.calendar.map(day=>'<div class="calDay"><div class="calDayHead">'+fmtDate(day.date)+' <span style="float:right;color:#77869c">'+day.slots.filter(s=>s.available).length+' libre(s)</span></div>'+day.slots.map(s=>{if(s.past&&!s.taken)return '<div class="slot past"><span>'+esc(s.time)+'</span><span>passé</span></div>';if(!s.taken)return '<div class="slot free"><span>'+esc(s.time)+'</span><span>libre</span></div>';const b=data.bookings.find(v=>v.date===day.date&&v.time===s.time&&v.status!=='cancelled');const l=b?(data.leads.find(v=>v.id===b.leadId)||{}):{};return '<div class="slot busy"><span>'+esc(s.time)+'</span>'+(b?'<button class="ghost" style="padding:3px 6px" data-open-lead="'+b.leadId+'">'+esc((l.name||'Réservé').split(' ')[0])+'</button>':'<b>réservé</b>')+'</div>'}).join('')+'</div>').join('') }
+function miniCalendar(){const base=new Date();const y=base.getFullYear(),m=base.getMonth();const first=new Date(y,m,1).getDay();const offset=(first+6)%7;const days=new Date(y,m+1,0).getDate();let h='<div class="month"><b>'+base.toLocaleDateString('fr-FR',{month:'long',year:'numeric'})+'</b><span class="muted small">● rendez-vous</span></div><div class="week"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div><div class="days">';for(let i=0;i<offset;i++)h+='<div class="day empty"></div>';for(let d=1;d<=days;d++){const key=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');const busy=data.bookings.some(b=>b.date===key&&b.status!=='cancelled');const today=d===base.getDate();h+='<div class="day '+(today?'today ':'')+(busy?'dot':'')+'">'+d+'</div>'}return h+'</div>'}
+function renderOverview(){const active=data.bookings.filter(b=>b.status!=='cancelled'),today=todayKey();const upcoming=active.filter(b=>b.date>=today).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).slice(0,5);$('upcomingAppointments').innerHTML=upcoming.length?upcoming.map(b=>{const l=data.leads.find(v=>v.id===b.leadId)||{};return '<div class="appt"><div class="time">'+esc(b.time)+'</div><div><b>'+esc(l.name||'Candidat')+'</b><span>'+fmtDate(b.date)+' · '+esc(l.language||'')+'</span></div><span class="pill '+BOOK_PILL[b.status]+'">'+BOOK_STATUS[b.status]+'</span></div>'}).join(''):'<div class="muted" style="padding:24px 0;text-align:center">Aucun rendez-vous à venir.</div>';const rows=data.leads.slice().sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))).slice(0,6);$('recentLeads').innerHTML='<table class="table"><thead><tr><th>Candidat</th><th>Score</th><th>Rendez-vous</th><th>Statut</th><th></th></tr></thead><tbody>'+rows.map(l=>{const b=bookingOf(l.id),sc=Number(l.score||0);return '<tr><td><div class="candidate"><div class="miniAvatar">'+initials(l.name)+'</div><div><b>'+esc(l.name)+'</b><span>'+esc(l.email)+'</span></div></div></td><td><span class="score '+scoreClass(sc)+'">'+sc+'/3</span></td><td>'+(b?'<b>'+fmtDate(b.date)+'</b><br><span class="small muted">'+esc(b.time)+'</span>':'<span class="muted small">Aucun</span>')+'</td><td><span class="pill '+(l.status==='converted'||l.status==='qualified'?'ok':l.status==='lost'?'bad':l.status==='new'?'info':'warn')+'">'+(LEAD_STATUS[l.status]||l.status)+'</span></td><td><button class="ghost" data-open-lead="'+l.id+'">Voir</button></td></tr>'}).join('')+'</tbody></table>';miniCalendar();drawChart()}
+function drawChart(){const c=$('activityChart'),ctx=c.getContext('2d'),dpr=devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10))}const lead=days.map(k=>data.leads.filter(l=>String(l.createdAt||'').slice(0,10)===k).length),book=days.map(k=>data.bookings.filter(b=>String(b.createdAt||'').slice(0,10)===k).length);const max=Math.max(4,...lead,...book);ctx.font='10px system-ui';for(let i=0;i<5;i++){const y=22+i*(h-48)/4;ctx.strokeStyle='rgba(255,255,255,.06)';ctx.beginPath();ctx.moveTo(32,y);ctx.lineTo(w-8,y);ctx.stroke();ctx.fillStyle='#5f6c80';ctx.fillText(String(Math.round(max-(max*i/4))),4,y+3)}function line(vals,stroke){ctx.beginPath();vals.forEach((v,i)=>{const x=34+i*(w-48)/6,y=20+(max-v)*(h-48)/max;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();vals.forEach((v,i)=>{const x=34+i*(w-48)/6,y=20+(max-v)*(h-48)/max;ctx.fillStyle=stroke;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill()})}line(lead,'#e7b84b');line(book,'#4da3ff');ctx.fillStyle='#68758a';days.forEach((k,i)=>ctx.fillText(k.slice(5).replace('-','/'),28+i*(w-48)/6,h-8))}
+function openModal(html){$('modalPanel').innerHTML=html;$('modal').classList.remove('hidden')}function closeModal(){$('modal').classList.add('hidden');$('modalPanel').innerHTML=''}
+async function openLead(id){let r;try{r=await api('/api/admin/lead?id='+encodeURIComponent(id))}catch(e){toast(e.message,true);return}const l=r.lead,sc=Number(l.score||0);openModal('<div class="toolbar"><h2>'+esc(l.name)+'</h2><button class="ghost" id="mClose">Fermer</button></div><p class="muted small">Candidature du '+fmtDateTime(l.createdAt)+'</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin:15px 0"><span class="pill info">Score '+sc+'/3</span><span class="pill">'+esc(l.language||'—')+'</span><span class="pill">'+esc(LEAD_STATUS[l.status]||l.status)+'</span></div><h3>Contact</h3><dl class="answers"><dt>Email</dt><dd><a style="color:#69b3ff" href="mailto:'+esc(l.email)+'">'+esc(l.email)+'</a></dd><dt>Âge</dt><dd>'+esc(l.age||'—')+' ans</dd><dt>Pays</dt><dd>'+esc(l.countryName||'—')+(l.dialCode?' ('+esc(l.dialCode)+')':'')+'</dd><dt>WhatsApp</dt><dd><a style="color:#43ddb0" target="_blank" href="https://wa.me/'+digits(l.phone)+'">'+esc(l.phone)+'</a></dd></dl><h3>Réponses au questionnaire</h3><dl class="answers">'+Object.keys(Q_LABELS).map(k=>'<dt>'+Q_LABELS[k]+'</dt><dd>'+esc(l[k]||'—')+'</dd>').join('')+'</dl><h3>Rendez-vous</h3>'+(r.bookings.length?r.bookings.map(b=>'<div style="border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px"><b>'+fmtDate(b.date)+' · '+esc(b.time)+'</b> <span class="pill '+BOOK_PILL[b.status]+'">'+BOOK_STATUS[b.status]+'</span><div style="margin-top:8px;display:flex;gap:6px"><button class="ghost" data-reschedule="'+b.id+'">Déplacer</button>'+(b.status!=='cancelled'?'<button class="dangerBtn" data-book-status="'+b.id+'" data-to="cancelled">Annuler</button>':'')+'</div></div>').join(''):'<p class="muted">Aucun rendez-vous.</p>')+'<h3>Note privée</h3><textarea id="mNotes">'+esc(l.notes||'')+'</textarea><div style="margin-top:10px"><button class="goldBtn" id="mSaveNote">Enregistrer la note</button></div>');$('mClose').onclick=closeModal;$('mSaveNote').onclick=async()=>{try{await api('/api/admin/lead-status',{method:'POST',body:JSON.stringify({id:l.id,notes:$('mNotes').value})});toast('Note enregistrée');await load()}catch(e){toast(e.message,true)}}}
+async function openReschedule(id){const b=data.bookings.find(v=>v.id===id);if(!b)return;const l=data.leads.find(v=>v.id===b.leadId)||{};openModal('<div class="toolbar"><h2>Déplacer le rendez-vous</h2><button class="ghost" id="rClose">Fermer</button></div><p class="muted small">'+esc(l.name||'')+' — '+fmtDate(b.date)+' à '+esc(b.time)+'</p><label class="small muted">Nouvelle date</label><select id="rDate" style="margin:5px 0 12px">'+data.calendar.map(d=>'<option value="'+d.date+'"'+(d.date===b.date?' selected':'')+'>'+fmtDate(d.date)+' — '+d.slots.filter(s=>s.available).length+' libre(s)</option>').join('')+'</select><label class="small muted">Nouvelle heure</label><select id="rTime" style="margin-top:5px"></select><div style="margin-top:14px"><button class="goldBtn" id="rSave">Enregistrer</button> <button class="ghost" id="rCancel">Annuler</button></div>');function fill(){const d=data.calendar.find(x=>x.date===$('rDate').value);$('rTime').innerHTML=(d?d.slots:[]).map(s=>{const cur=d.date===b.date&&s.time===b.time,ok=s.available||cur;return '<option value="'+s.time+'"'+(ok?'':' disabled')+(cur?' selected':'')+'>'+s.time+(cur?' (actuel)':s.taken?' — réservé':s.past?' — passé':'')+'</option>'}).join('')}fill();$('rDate').onchange=fill;$('rClose').onclick=closeModal;$('rCancel').onclick=closeModal;$('rSave').onclick=async()=>{try{await api('/api/admin/booking-reschedule',{method:'POST',body:JSON.stringify({id,date:$('rDate').value,time:$('rTime').value})});toast('Rendez-vous déplacé');closeModal();await load()}catch(e){toast(e.code==='slot_taken'?'Ce créneau vient d’être pris.':e.message,true);await load()}}}
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-open-lead],[data-reschedule],[data-book-status],[data-view]');if(!t)return;if(t.dataset.view){switchView(t.dataset.view);return}if(t.dataset.openLead){closeModal();openLead(t.dataset.openLead);return}if(t.dataset.reschedule){openReschedule(t.dataset.reschedule);return}if(t.dataset.bookStatus){const to=t.dataset.to;if(to==='cancelled'&&!confirm('Annuler ce rendez-vous ?'))return;try{await api('/api/admin/booking-status',{method:'POST',body:JSON.stringify({id:t.dataset.bookStatus,status:to})});toast(to==='cancelled'?'Rendez-vous annulé':to==='confirmed'?'Rendez-vous confirmé':'Rendez-vous rétabli');closeModal();await load()}catch(e){toast(e.code==='slot_taken'?'Le créneau a été repris entre-temps.':e.message,true)}}});
+document.addEventListener('change',async e=>{const s=e.target.closest('[data-lead-status]');if(!s)return;try{await api('/api/admin/lead-status',{method:'POST',body:JSON.stringify({id:s.dataset.leadStatus,status:s.value})});toast('Statut mis à jour');await load()}catch(err){toast(err.message,true)}});
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+$('logoutBtn').onclick=logout;$('notificationBtn').onclick=()=>switchView('bookings');$('refreshQuick').onclick=()=>load().then(()=>toast('Données actualisées')).catch(e=>toast(e.message,true));$('search').oninput=renderLeads;$('filterStatus').onchange=renderLeads;$('showCancelled').onchange=renderBookings;$('globalSearch').oninput=()=>{if($('globalSearch').value.trim()){switchView('leads');$('search').value=$('globalSearch').value;renderLeads()}else renderLeads()};
+function switchView(v){document.querySelectorAll('.nav [data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));$('view-'+v).classList.add('active')}
+function download(path,filename){fetch(path,{headers:{Authorization:'Bearer '+token}}).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=filename;a.click();URL.revokeObjectURL(a.href)}).catch(()=>toast('Export impossible',true))}$('csvLeads').onclick=()=>download('/api/admin/export.csv','candidats.csv');$('csvBookings').onclick=()=>download('/api/admin/export-bookings.csv','rendez-vous.csv');
+function detectNewBookings(){const ids=data.bookings.map(b=>b.id);let old=[];try{old=JSON.parse(localStorage.getItem('dashboardBookings')||'[]')}catch(e){}if(old.length){const added=data.bookings.filter(b=>!old.includes(b.id)&&b.status!=='cancelled');if(added.length)toast(added.length===1?'🔔 Nouveau rendez-vous reçu':'🔔 Nouveaux rendez-vous reçus')}try{localStorage.setItem('dashboardBookings',JSON.stringify(ids))}catch(e){}}
+setInterval(()=>{if(token)load().catch(()=>{})},30000);window.addEventListener('resize',()=>{if($('view-overview').classList.contains('active'))drawChart()});
+(function restore(){let saved='';try{saved=sessionStorage.getItem('adm')||''}catch(e){}if(!saved){location.href='/admin';return}token=saved;load().catch(()=>logout())})();
+</script>
+</body></html>
+
+<!doctype html>
+<html lang="ht">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pran yon randevou — Empire des Spatiates</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
+nav{height:82px;padding:0 6.5%;background:#fff;border-bottom:1px solid #e8ebf2;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#172033}
+.brand img{width:48px;height:52px;object-fit:contain;display:block}
+.brand-divider{width:1px;height:34px;background:#d6a63b;margin-left:1px}
+.brand-name{font-size:20px;font-weight:800;letter-spacing:.2px}
+.brand-name span{font-weight:500}
+.nav-cta{display:inline-flex;align-items:center;gap:9px;background:#172033;color:#fff;padding:13px 20px;border-radius:10px;text-decoration:none;font-weight:800;font-size:14px}
+.hero{padding:68px 7% 72px;background:linear-gradient(135deg,#101b2f 0%,#223552 58%,#30476f 100%);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;right:-130px;top:-100px;border-radius:50%;background:radial-gradient(circle,rgba(218,169,67,.14),transparent 65%);pointer-events:none}
+.hero h1{font-size:42px;line-height:1.12;max-width:820px;margin:0 0 16px;font-weight:800;letter-spacing:-.5px}
+.hero p{font-size:18px;max-width:720px;line-height:1.65;color:#e5e9f2;margin:0}
+.section{padding:50px 7%;max-width:980px;margin:auto}
+.card{background:#fff;padding:32px;border-radius:18px;box-shadow:0 10px 35px rgba(23,32,51,.08);border:1px solid #edf0f5}
+.notice{padding:15px 17px;background:#eef4ff;border-radius:10px;margin:15px 0;line-height:1.5}
+#applicantSummary{background:#fff;color:#172033;border:2px solid #d6a63b;border-radius:12px;padding:16px 18px;font-size:16px;font-weight:800;line-height:1.5;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.success{background:#edf9f1;border:1px solid #d5efdf}.error{background:#fff0f0}
+label{display:block;margin-top:20px;font-weight:700}
+input,select{width:100%;padding:14px;border:1px solid #d8deea;border-radius:9px;margin-top:8px;background:#fff;font-size:16px;color:#172033;outline:none}
+input:focus,select:focus{border-color:#d6a63b;box-shadow:0 0 0 3px rgba(214,166,59,.12)}
+.btn{display:inline-block;background:#172033;color:#fff;padding:14px 22px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-weight:700;margin-top:20px;transition:.2s}
+.btn:hover{transform:translateY(-1px);background:#22314d}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.hidden{display:none}.small{font-size:13px;color:#657087}
+.confirm-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff2bd;color:#9b7100;margin-bottom:14px}.confirm-icon svg{width:27px;height:27px;display:block}
+footer{padding:30px;text-align:center;background:#172033;color:#fff;margin-top:40px}
+@media(max-width:750px){
+ nav{height:74px;padding:0 5%}.brand img{width:40px;height:44px}.brand-name{font-size:16px}.brand-divider{height:28px}.nav-cta{display:none}
+ .hero{padding:48px 5% 54px}.hero h1{font-size:32px}.hero p{font-size:16px}
+ .section{padding:34px 5%}.card{padding:22px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="/">
+    <img src="data:image/png;base64,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" alt="Logo Empire des Spatiates">
+    <span class="brand-divider"></span>
+    <span class="brand-name">EMPIRE DES <span>SPATIATES</span></span>
+  </a>
+  <a class="nav-cta" href="/#candidature" id="navCta">POSTULER MAINTENANT <span aria-hidden="true">→</span></a>
+</nav>
+<section class="hero">
+<h1 id="title">Pran yon randevou ak Coach Leonidas</h1>
+<p id="intro">Kandidati ou an anrejistre. Kounye a chwazi dat ak lè ou vle pran apèl la ak Coach Leonidas.</p>
+<div id="applicantSummary" class="notice hidden" aria-live="polite"></div>
+</section>
+<section class="section" id="booking">
+<div class="card">
+<div class="notice" id="availability">Disponibilite: 10:00 AM rive 6:00 PM. Ou ka pran randevou jiska 14 jou apati jodi a. Yon lè ki deja pran pa ka chwazi ankò.</div>
+<label for="date" id="dateLabel">1. Chwazi dat apèl la</label>
+<input id="date" type="date">
+<label for="time" id="timeLabel">2. Chwazi lè apèl la</label>
+<select id="time"><option value="">Chwazi yon dat anvan</option></select>
+<button class="btn" id="bookBtn">Konfime randevou</button>
+<div id="bookMsg" class="notice hidden"></div>
+<div id="confirmStep" class="notice success hidden">
+  <div class="confirm-icon" role="img" aria-label="Demann an atant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 5 5 6 5 10s-5 5-5 10M17 2c0 5-5 6-5 10s5 5 5 10"/><path d="M9 6h6M9 18h6"/></svg></div>
+  <b id="confirmationTitle">4. Konfimasyon</b><br><br>
+  <span id="nameLabel">Non</span> : <b id="confName"></b><br>
+  <span id="confDateLabel">Dat</span> : <b id="confDate"></b><br>
+  <span id="confTimeLabel">Lè</span> : <b id="confTime"></b><br><br>
+  <span id="confirmSaved">Randevou ou an ak Coach Leonidas anrejistre.</span><br>
+  <span id="followUpMessage">Demann randevou a ale. N ap kontakte w sou WhatsApp pi vit posib.</span><br><br>
+  <span class="small"><span id="confirmationText">Demann ou an anrejistre pou</span> <span id="summary"></span></span>
+</div>
+</div>
+</section>
+<footer id="footer">EMPIRE DES SPATIATES — Fòmasyon & Coaching Trading</footer>
+<script>
+const $=id=>document.getElementById(id);
+const params=new URLSearchParams(location.search);
+const leadId=params.get('leadId')||'';
+const currentLang=params.get('lang')||'Kreyòl';
+const T={
+ 'Kreyòl':{title:'Fè yon demann randevou pou yon apèl avèk Coach Leonidas',intro:'Fòmilè w la deja fin ranpli. Kounye a, chwazi yon dat ak yon lè pou w fè demann randevou pou apèl ou a avèk Coach Leonidas.',availability:'Disponibilite : Soti 10:00 AM rive 6:00 PM. Ou ka fè yon demann randevou apati jodi a pou rive nan 14 jou k ap vini yo. Enpòtan : Yon lè ki deja rezève pa disponib ankò.',date:'1. Chwazi dat apèl la',time:'2. Chwazi lè apèl la',chooseDate:'Chwazi yon dat anvan',choose:'Chwazi',confirm:'Voye demann ou a ale',loading:'N ap chaje lè ki disponib yo...',noSlots:'Pa gen lè disponib pou dat sa a.',taken:' — pran',past:' — pase',saving:'N ap anrejistre...',saved:'Nou resevwa demann randevou w la.',followUp:'N ap kontakte w sou WhatsApp pi vit posib pou fè w konnen rezilta demann ou an.',name:'Non',ageLabel:'Laj',applicant:'Kandidati',dateLabel:'Dat',timeLabel:'Lè',confirmation:'4. Demann an atant',request:'Demann ou an anrejistre pou',err:'Gen yon erè. Tanpri eseye ankò.',notFound:'Kandidati a pa jwenn.',chooseDT:'Chwazi yon dat ak yon lè.'},
+ 'Français':{title:'Demander un rendez-vous pour un appel avec Coach Leonidas',intro:'Votre formulaire est déjà rempli. Choisissez maintenant une date et une heure pour envoyer votre demande d’appel avec Coach Leonidas.',availability:'Disponibilité : De 10 h 00 à 18 h 00. Vous pouvez demander un rendez-vous à partir d’aujourd’hui et jusqu’aux 14 prochains jours. Important : Un créneau déjà réservé n’est plus disponible.',date:'1. Choisissez la date de l’appel',time:'2. Choisissez l’heure de l’appel',chooseDate:'Choisissez d’abord une date',choose:'Choisir',confirm:'Envoyer votre demande',loading:'Chargement des créneaux disponibles...',noSlots:'Aucun créneau disponible pour cette date.',taken:' — pris',past:' — passé',saving:'Enregistrement en cours...',saved:'Nous avons bien reçu votre demande de rendez-vous.',followUp:'Nous vous contacterons sur WhatsApp dès que possible pour vous communiquer le résultat de votre demande.',name:'Nom',ageLabel:'Âge',applicant:'Candidat',dateLabel:'Date',timeLabel:'Heure',confirmation:'4. Demande en attente',request:'Votre demande est enregistrée pour',err:'Une erreur est survenue. Veuillez réessayer.',notFound:'Candidature introuvable.',chooseDT:'Choisissez une date et une heure.'},
+ 'English':{title:'Request a call appointment with Coach Leonidas',intro:'Your form is already completed. Now choose a date and time to submit your request for a call with Coach Leonidas.',availability:'Availability: 10:00 AM to 6:00 PM. You can request an appointment from today through the next 14 days. Important: A time slot that has already been booked is no longer available.',date:'1. Choose the call date',time:'2. Choose the call time',chooseDate:'Choose a date first',choose:'Choose',confirm:'Submit your request',loading:'Loading available times...',noSlots:'No available time slots for this date.',taken:' — taken',past:' — past',saving:'Saving your booking...',saved:'We have received your appointment request.',followUp:'We will contact you on WhatsApp as soon as possible to let you know the outcome of your request.',name:'Name',ageLabel:'Age',applicant:'Applicant',dateLabel:'Date',timeLabel:'Time',confirmation:'4. Request pending',request:'Your request is registered for',err:'Something went wrong. Please try again.',notFound:'Application not found.',chooseDT:'Choose a date and a time.'}
+}[currentLang]||null;
+const lang=T?currentLang:'Kreyòl';
+const t=T||arguments[0];
+function setText(){
+ const x=T||arguments[0];
+ $('title').textContent=x.title;$('intro').textContent=x.intro;$('availability').textContent=x.availability;$('dateLabel').textContent=x.date;$('timeLabel').textContent=x.time;$('time').innerHTML='<option value="">'+x.chooseDate+'</option>';$('bookBtn').textContent=x.confirm;$('confirmationTitle').textContent=x.confirmation;$('nameLabel').textContent=x.name;$('confDateLabel').textContent=x.dateLabel;$('confTimeLabel').textContent=x.timeLabel;$('confirmSaved').textContent=x.saved;$('confirmationText').textContent=x.request;$('followUpMessage').textContent=x.followUp;$('navCta').firstChild.textContent=(currentLang==='Français'?' POSTULER MAINTENANT ':currentLang==='English'?' APPLY NOW ':' POSTILE KOUNYE A ');$('footer').textContent='EMPIRE DES SPATIATES — '+(currentLang==='Français'?'Formation & Coaching Trading':currentLang==='English'?'Trading Training & Coaching':'Fòmasyon & Coaching Trading');
+}
+setText();
+try { const applicant=JSON.parse(sessionStorage.getItem('bookingLead')||'{}'); if(applicant.name){ const box=$('applicantSummary'); box.textContent=T.applicant+': '+applicant.name+(applicant.age?' · '+T.ageLabel+': '+applicant.age:''); box.classList.remove('hidden'); } } catch(e) {}
+function errText(x){if(x&&x.code==='lead_not_found')return T.notFound;return (x&&x.error)||T.err}
+function localDate(d){return new Date(d+'T12:00:00').toLocaleDateString(currentLang==='Français'?'fr-FR':currentLang==='English'?'en-US':'fr-HT',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+function applyLimits(){const now=new Date();const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Port-au-Prince'}).format(now);const max=new Date(today+'T00:00:00Z');max.setUTCDate(max.getUTCDate()+14);$('date').min=today;$('date').max=max.toISOString().slice(0,10)}
+async function loadSlots(){const d=$('date').value;const sel=$('time');if(!d){sel.innerHTML='<option value="">'+T.chooseDate+'</option>';return}sel.disabled=true;sel.innerHTML='<option value="">'+T.loading+'</option>';try{const r=await fetch('/api/slots?date='+encodeURIComponent(d),{cache:'no-store'});const x=await r.json();const list=(x&&x.times)||[];const open=list.filter(v=>v.available);if(!r.ok||!open.length){sel.innerHTML='<option value="">'+(x.code?errText(x):T.noSlots)+'</option>';return}sel.innerHTML='<option value="">'+T.choose+'</option>'+list.map(v=>'<option value="'+v.time+'"'+(v.available?'':' disabled')+'>'+v.time+(v.available?'':(v.past?T.past:T.taken))+'</option>').join('')}catch(e){sel.innerHTML='<option value="">'+T.err+'</option>'}finally{sel.disabled=false}}
+function showMsg(kind,msg){$('bookMsg').className='notice '+kind;$('bookMsg').textContent=msg;$('bookMsg').classList.remove('hidden')}
+$('date').addEventListener('change',loadSlots);
+$('bookBtn').addEventListener('click',async()=>{const btn=$('bookBtn'),date=$('date').value,time=$('time').value;if(!date||!time){showMsg('error',T.chooseDT);return}if(!leadId){showMsg('error',T.notFound);return}btn.disabled=true;btn.textContent=T.saving;try{const r=await fetch('/api/booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date,time,leadId})});const x=await r.json().catch(()=>({}));if(!r.ok){showMsg('error',errText(x));await loadSlots();return}showMsg('success',T.saved);$('confName').textContent=x.name||'';try{const applicant=JSON.parse(sessionStorage.getItem('bookingLead')||'{}');if(applicant.age)$('summary').textContent=T.ageLabel+': '+applicant.age+' · '+date+' · '+time;else $('summary').textContent=date+' · '+time;}catch(e){$('summary').textContent=date+' · '+time;}$('confDate').textContent=localDate(date);$('confTime').textContent=time;$('confirmStep').classList.remove('hidden');btn.style.display='none';await loadSlots();$('confirmStep').scrollIntoView({behavior:'smooth'});}catch(e){showMsg('error',T.err)}finally{if(btn.style.display!=='none'){btn.disabled=false;btn.textContent=T.confirm}}});
+applyLimits();
+</script>
+</body>
+</html>
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard privé — Coach Leonidas</title>
+<style>
+:root{
+  --bg:#f4f6fb; --ink:#141d2e; --muted:#6a7691; --line:#e4e8f1; --card:#fff;
+  --brand:#172033; --ok:#1d7a44; --okbg:#e7f6ed; --warn:#9a6a00; --warnbg:#fdf3dd;
+  --bad:#a32424; --badbg:#fdecec; --info:#2a4d8f; --infobg:#e9f0ff;
+  --radius:14px; --shadow:0 6px 24px rgba(20,29,46,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:24px;margin:0 0 4px}
+h2{font-size:18px;margin:0 0 14px}
+h3{font-size:15px;margin:22px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.box{background:var(--card);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+input,select,textarea,button{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:inherit;width:100%}
+textarea{min-height:72px;resize:vertical}
+button{background:var(--brand);color:#fff;border:0;font-weight:600;cursor:pointer;width:auto;padding:10px 16px}
+button:hover{opacity:.9}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{background:#eef1f7;color:var(--ink)}
+button.ok{background:var(--ok)}
+button.bad{background:var(--bad)}
+button.sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.hidden{display:none !important}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row>.grow{flex:1;min-width:180px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.kpi .n{font-size:26px;font-weight:800;margin-top:4px}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:9px 16px;border-radius:999px;background:#e8ecf4;cursor:pointer;font-weight:600;font-size:14px;border:0;color:var(--ink);width:auto}
+.tab.on{background:var(--brand);color:#fff}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:10px;border-bottom:2px solid var(--line)}
+td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:hover td{background:#fafbfe}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eef1f7;color:var(--muted)}
+.pill.ok{background:var(--okbg);color:var(--ok)}
+.pill.warn{background:var(--warnbg);color:var(--warn)}
+.pill.bad{background:var(--badbg);color:var(--bad)}
+.pill.info{background:var(--infobg);color:var(--info)}
+.score{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-weight:800;background:#eef1f7}
+.score.s2{background:var(--warnbg);color:var(--warn)}
+.score.s3{background:var(--okbg);color:var(--ok)}
+.link{color:var(--info);text-decoration:none;font-weight:600;cursor:pointer}
+.wa{color:var(--ok);text-decoration:none;font-weight:600}
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.day{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.day header{padding:9px 12px;background:#f2f5fa;font-weight:700;font-size:13px;border-bottom:1px solid var(--line)}
+.day header .c{float:right;font-weight:600;color:var(--muted)}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 12px;font-size:13px;border-bottom:1px solid #f1f3f8}
+.slot:last-child{border-bottom:0}
+.slot.free{color:var(--ok)}
+.slot.busy{background:var(--infobg)}
+.slot.past{color:#b6bdcc;text-decoration:line-through}
+.slot b{font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(15,22,36,.55);display:flex;align-items:flex-start;justify-content:center;padding:28px 16px;overflow:auto;z-index:50}
+.modal .panel{background:#fff;border-radius:16px;max-width:760px;width:100%;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.answers{display:grid;grid-template-columns:150px 1fr;gap:8px 16px;font-size:14px}
+.answers dt{color:var(--muted);font-weight:600}
+.answers dd{margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--brand);color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:100;font-weight:600}
+.toast.bad{background:var(--bad)}
+.banner{padding:12px 16px;border-radius:10px;background:var(--warnbg);color:var(--warn);font-weight:600;margin-bottom:16px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:1fr}.wrap{padding:18px 14px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============== CONNEXION ============== -->
+  <div id="login" class="box" style="max-width:420px;margin:60px auto">
+    <h1>Dashboard privé</h1>
+    <p class="muted small">Coach Leonidas — Empire des Spatiates</p>
+    <div style="margin-top:18px">
+      <label class="small muted">Utilisateur</label>
+      <input id="user" value="admin" autocomplete="username">
+    </div>
+    <div style="margin-top:12px">
+      <label class="small muted">Mot de passe</label>
+      <input id="pass" type="password" autocomplete="current-password">
+    </div>
+    <button id="loginBtn" style="margin-top:16px;width:100%">Se connecter</button>
+    <p id="loginErr" class="small hidden" style="color:var(--bad);margin-top:10px"></p>
+    <p class="small muted" style="margin-top:14px">Définissez <code>ADMIN_PASS</code> sur votre hébergement avant la mise en ligne.</p>
+  </div>
+
+  <!-- ============== DASHBOARD ============== -->
+  <div id="dash" class="hidden">
+    <div class="row" style="margin-bottom:18px">
+      <div class="grow">
+        <h1>Mon Dashboard privé — Coach Leonidas</h1>
+        <p class="muted small" id="envLine"></p>
+      </div>
+      <button class="ghost" id="refreshBtn">Actualiser</button>
+      <button class="ghost" id="logoutBtn">Déconnexion</button>
+    </div>
+
+    <div id="defaultPassWarn" class="banner hidden">
+      Le mot de passe administrateur par défaut est encore actif. Changez-le avant de publier le site.
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="muted small">Candidats</div><div class="n" id="kLeads">0</div></div>
+      <div class="kpi"><div class="muted small">Nouveaux</div><div class="n" id="kNew">0</div></div>
+      <div class="kpi"><div class="muted small">Qualifiés</div><div class="n" id="kQualified">0</div></div>
+      <div class="kpi"><div class="muted small">Rendez-vous actifs</div><div class="n" id="kBookings">0</div></div>
+      <div class="kpi"><div class="muted small">Créneaux libres (14 j)</div><div class="n" id="kFree">0</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-view="leads">Candidats</button>
+      <button class="tab" data-view="bookings">Rendez-vous</button>
+      <button class="tab" data-view="calendar">Calendrier</button>
+    </div>
+
+    <!-- --- Candidats --- -->
+    <section id="view-leads" class="box">
+      <div class="row" style="margin-bottom:14px">
+        <h2 style="margin:0" class="grow">Candidats</h2>
+        <input id="search" class="grow" placeholder="Nom, email, WhatsApp, langue…">
+        <select id="filterStatus" style="width:auto">
+          <option value="">Tous les statuts</option>
+          <option value="new">Nouveau</option>
+          <option value="contacted">Contacté</option>
+          <option value="qualified">Qualifié</option>
+          <option value="converted">Converti</option>
+          <option value="lost">Perdu</option>
+        </select>
+        <button class="ghost" id="csvLeads">Export CSV</button>
+      </div>
+      <div class="tablewrap" id="leadsTable"></div>
+    </section>
+
+    <!-- --- Rendez-vous --- -->
+    <section id="view-bookings" class="box hidden">
+      <div class="row" style="margin-bottom:14px">
+        <h2 style="margin:0" class="grow">Mes rendez-vous</h2>
+        <label class="small muted row" style="gap:6px;width:auto">
+          <input type="checkbox" id="showCancelled" style="width:auto">
+          Afficher les annulés
+        </label>
+        <button class="ghost" id="csvBookings">Export CSV</button>
+      </div>
+      <div class="tablewrap" id="bookingsTable"></div>
+    </section>
+
+    <!-- --- Calendrier --- -->
+    <section id="view-calendar" class="box hidden">
+      <h2>Calendrier des 14 prochains jours</h2>
+      <p class="muted small">Vert = libre · Bleu = réservé · Grisé = déjà passé. Cliquez sur un créneau réservé pour ouvrir le candidat.</p>
+      <div class="cal" id="calendar" style="margin-top:16px"></div>
+    </section>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden"><div class="panel" id="modalPanel"></div></div>
+
+<script>
+'use strict';
+const $ = (id) => document.getElementById(id);
+let token = '';
+let data = { leads: [], bookings: [], calendar: [], times: [], window: {} };
+
+/* ---------------- Utilitaires ---------------- */
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function digits(v){return String(v||'').replace(/\D/g,'');}
+function toast(msg, bad){
+  const el = document.createElement('div');
+  el.className = 'toast' + (bad ? ' bad' : '');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3200);
+}
+function fmtDate(iso){
+  try { return new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR',{weekday:'short',day:'2-digit',month:'short'}); }
+  catch(e){ return iso; }
+}
+function fmtDateTime(iso){
+  try { return new Date(iso).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}); }
+  catch(e){ return iso || '—'; }
+}
+const LEAD_STATUS = {new:'Nouveau',contacted:'Contacté',qualified:'Qualifié',converted:'Converti',lost:'Perdu'};
+const BOOK_STATUS = {pending:'À confirmer',confirmed:'Confirmé',cancelled:'Annulé'};
+const BOOK_PILL   = {pending:'warn',confirmed:'ok',cancelled:'bad'};
+const Q_LABELS = {
+  q1:'1. Niveau d’expérience', q2:'2. Marché préféré', q3:'3. Plus grande difficulté',
+  q4:'4. Objectif principal', q5:'5. Temps par semaine', q6:'6. Budget envisagé',
+  q7:'7. Plan de trading écrit', q8:'8. Type d’accompagnement'
+};
+
+async function api(path, opts){
+  const o = Object.assign({ headers: {} }, opts || {});
+  o.headers = Object.assign({ Authorization: 'Bearer ' + token }, o.headers);
+  if (o.body) o.headers['Content-Type'] = 'application/json';
+  const r = await fetch(path, o);
+  if (r.status === 401) { logout(); throw new Error('Session expirée'); }
+  const x = await r.json().catch(() => ({}));
+  if (!r.ok) throw Object.assign(new Error(x.error || 'Erreur'), { code: x.code, payload: x });
+  return x;
+}
+
+/* ---------------- Connexion ---------------- */
+async function login(){
+  const btn = $('loginBtn');
+  btn.disabled = true;
+  $('loginErr').classList.add('hidden');
+  try {
+    const r = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: $('user').value, password: $('pass').value })
+    });
+    const x = await r.json();
+    if (!r.ok) {
+      $('loginErr').textContent = x.code === 'rate_limited'
+        ? 'Trop de tentatives. Patientez quelques minutes.'
+        : 'Identifiants incorrects.';
+      $('loginErr').classList.remove('hidden');
+      return;
+    }
+    token = x.token;
+    try { sessionStorage.setItem('adm', token); } catch(e){}
+    if ($('pass').value === 'ChangeMe123!') $('defaultPassWarn').classList.remove('hidden');
+    $('login').classList.add('hidden');
+    $('dash').classList.remove('hidden');
+    await load();
+  } finally { btn.disabled = false; }
+}
+
+function logout(){
+  fetch('/api/admin/logout', { method:'POST', headers:{ Authorization:'Bearer ' + token } }).catch(()=>{});
+  token = '';
+  try { sessionStorage.removeItem('adm'); } catch(e){}
+  $('dash').classList.add('hidden');
+  $('login').classList.remove('hidden');
+  $('pass').value = '';
+}
+
+/* ---------------- Chargement ---------------- */
+async function load(){
+  data = await api('/api/admin/data');
+  const active = data.bookings.filter(b => b.status !== 'cancelled');
+  $('kLeads').textContent     = data.leads.length;
+  $('kNew').textContent       = data.leads.filter(l => l.status === 'new').length;
+  $('kQualified').textContent = data.leads.filter(l => l.status === 'qualified').length;
+  $('kBookings').textContent  = active.length;
+  $('kFree').textContent      = data.calendar.reduce((n,d) => n + d.slots.filter(s => s.available).length, 0);
+  $('envLine').textContent    = 'Stockage : ' + data.engine + ' · Fuseau : ' + data.timezone +
+                                ' · Réservations ouvertes du ' + data.window.today + ' au ' + data.window.max;
+  renderLeads(); renderBookings(); renderCalendar();
+}
+
+/* ---------------- Candidats ---------------- */
+function bookingOf(leadId){
+  return data.bookings.find(b => b.leadId === leadId && b.status !== 'cancelled') || null;
+}
+
+function renderLeads(){
+  const q = ($('search').value || '').toLowerCase().trim();
+  const st = $('filterStatus').value;
+  const rows = data.leads.filter(l => {
+    if (st && l.status !== st) return false;
+    if (!q) return true;
+    return [l.name,l.email,l.phone,l.language,l.q1,l.q2,l.q3,l.q4,l.q5,l.q6,l.q7,l.q8,l.notes]
+      .join(' ').toLowerCase().includes(q);
+  });
+
+  if (!rows.length) { $('leadsTable').innerHTML = '<p class="muted">Aucun candidat ne correspond.</p>'; return; }
+
+  $('leadsTable').innerHTML =
+    '<table><thead><tr><th>Candidat</th><th>Langue</th><th>Score</th><th>Candidature</th>' +
+    '<th>Rendez-vous</th><th>Statut</th><th></th></tr></thead><tbody>' +
+    rows.map(l => {
+      const b = bookingOf(l.id);
+      const sc = Number(l.score || 0);
+      return '<tr>' +
+        '<td><b>' + esc(l.name) + '</b><br><span class="small muted">' + esc(l.email) + '</span><br>' +
+          '<a class="wa small" target="_blank" rel="noopener" href="https://wa.me/' + digits(l.phone) + '">' + esc(l.phone) + '</a></td>' +
+        '<td><span class="pill">' + esc(l.language || '—') + '</span></td>' +
+        '<td><span class="score s' + sc + '">' + sc + '</span><span class="small muted">/3</span></td>' +
+        '<td class="small muted">' + fmtDateTime(l.createdAt) + '</td>' +
+        '<td>' + (b
+            ? '<b>' + fmtDate(b.date) + '</b><br>' + esc(b.time) +
+              '<br><span class="pill ' + BOOK_PILL[b.status] + '">' + BOOK_STATUS[b.status] + '</span>'
+            : '<span class="muted small">Aucun</span>') + '</td>' +
+        '<td><select class="sm" data-lead-status="' + l.id + '">' +
+          Object.keys(LEAD_STATUS).map(k =>
+            '<option value="' + k + '"' + (l.status === k ? ' selected' : '') + '>' + LEAD_STATUS[k] + '</option>'
+          ).join('') + '</select></td>' +
+        '<td><button class="ghost sm" data-open-lead="' + l.id + '">Détails</button></td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ---------------- Rendez-vous ---------------- */
+function renderBookings(){
+  const showCancelled = $('showCancelled').checked;
+  const rows = data.bookings
+    .filter(b => showCancelled || b.status !== 'cancelled')
+    .sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time));
+
+  if (!rows.length) { $('bookingsTable').innerHTML = '<p class="muted">Aucun rendez-vous.</p>'; return; }
+
+  $('bookingsTable').innerHTML =
+    '<table><thead><tr><th>Date</th><th>Heure</th><th>Candidat</th><th>Langue</th>' +
+    '<th>Score</th><th>Statut</th><th>Actions</th></tr></thead><tbody>' +
+    rows.map(b => {
+      const l = data.leads.find(v => v.id === b.leadId) || {};
+      const sc = Number(l.score || 0);
+      return '<tr>' +
+        '<td><b>' + fmtDate(b.date) + '</b><br><span class="small muted">' + esc(b.date) + '</span></td>' +
+        '<td><b>' + esc(b.time) + '</b></td>' +
+        '<td><b>' + esc(l.name || '—') + '</b><br>' +
+          '<a class="wa small" target="_blank" rel="noopener" href="https://wa.me/' + digits(l.phone) + '">' + esc(l.phone || '') + '</a></td>' +
+        '<td><span class="pill">' + esc(l.language || '—') + '</span></td>' +
+        '<td><span class="score s' + sc + '">' + sc + '</span></td>' +
+        '<td><span class="pill ' + BOOK_PILL[b.status] + '">' + BOOK_STATUS[b.status] + '</span></td>' +
+        '<td class="row" style="gap:6px">' +
+          '<button class="ghost sm" data-open-lead="' + b.leadId + '">Détails</button>' +
+          (b.status !== 'confirmed' ? '<button class="ok sm" data-book-status="' + b.id + '" data-to="confirmed">Confirmer</button>' : '') +
+          '<button class="ghost sm" data-reschedule="' + b.id + '">Déplacer</button>' +
+          (b.status !== 'cancelled'
+            ? '<button class="bad sm" data-book-status="' + b.id + '" data-to="cancelled">Annuler</button>'
+            : '<button class="ghost sm" data-book-status="' + b.id + '" data-to="pending">Rétablir</button>') +
+        '</td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ---------------- Calendrier ---------------- */
+function renderCalendar(){
+  $('calendar').innerHTML = data.calendar.map(day => {
+    const free = day.slots.filter(s => s.available).length;
+    return '<div class="day"><header>' + fmtDate(day.date) +
+      '<span class="c">' + free + ' libre' + (free > 1 ? 's' : '') + '</span></header>' +
+      day.slots.map(s => {
+        if (s.past && !s.taken) return '<div class="slot past"><span>' + esc(s.time) + '</span><span>passé</span></div>';
+        if (!s.taken) return '<div class="slot free"><span>' + esc(s.time) + '</span><span>libre</span></div>';
+        const b = data.bookings.find(v => v.date === day.date && v.time === s.time && v.status !== 'cancelled');
+        const l = b ? (data.leads.find(v => v.id === b.leadId) || {}) : {};
+        return '<div class="slot busy"><span>' + esc(s.time) + '</span>' +
+          (b ? '<a class="link" data-open-lead="' + b.leadId + '">' + esc((l.name || 'Réservé').split(' ')[0]) + '</a>'
+             : '<b>réservé</b>') + '</div>';
+      }).join('') + '</div>';
+  }).join('');
+}
+
+/* ---------------- Fiche candidat ---------------- */
+function openModal(html){ $('modalPanel').innerHTML = html; $('modal').classList.remove('hidden'); }
+function closeModal(){ $('modal').classList.add('hidden'); $('modalPanel').innerHTML = ''; }
+
+async function openLead(id){
+  let res;
+  try { res = await api('/api/admin/lead?id=' + encodeURIComponent(id)); }
+  catch (e) { toast(e.message, true); return; }
+  const l = res.lead;
+  const sc = Number(l.score || 0);
+
+  openModal(
+    '<div class="row"><h2 class="grow" style="margin:0">' + esc(l.name) + '</h2>' +
+      '<button class="ghost sm" id="mClose">Fermer</button></div>' +
+    '<p class="muted small" style="margin:6px 0 18px">Candidature du ' + fmtDateTime(l.createdAt) + '</p>' +
+
+    '<div class="row" style="gap:18px;margin-bottom:18px">' +
+      '<div><div class="muted small">Score</div><span class="score s' + sc + '">' + sc + '</span> <span class="small muted">/3</span></div>' +
+      '<div><div class="muted small">Langue</div><span class="pill">' + esc(l.language || '—') + '</span></div>' +
+      '<div><div class="muted small">Statut</div><span class="pill info">' + (LEAD_STATUS[l.status] || l.status) + '</span></div>' +
+    '</div>' +
+
+    '<h3>Contact</h3>' +
+    '<dl class="answers">' +
+      '<dt>Email</dt><dd><a class="link" href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a></dd>' +
+      '<dt>WhatsApp</dt><dd><a class="wa" target="_blank" rel="noopener" href="https://wa.me/' + digits(l.phone) + '">' + esc(l.phone) + '</a></dd>' +
+    '</dl>' +
+
+    '<h3>Réponses au questionnaire</h3>' +
+    '<dl class="answers">' +
+      Object.keys(Q_LABELS).map(k =>
+        '<dt>' + Q_LABELS[k] + '</dt><dd>' + esc(l[k] || '—') + '</dd>'
+      ).join('') +
+    '</dl>' +
+
+    '<h3>Rendez-vous</h3>' +
+    (res.bookings.length
+      ? res.bookings.map(b =>
+          '<div class="row" style="border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px">' +
+            '<div class="grow"><b>' + fmtDate(b.date) + ' · ' + esc(b.time) + '</b><br>' +
+              '<span class="pill ' + BOOK_PILL[b.status] + '">' + BOOK_STATUS[b.status] + '</span>' +
+              '<span class="small muted"> réservé le ' + fmtDateTime(b.createdAt) + '</span></div>' +
+            '<button class="ghost sm" data-reschedule="' + b.id + '">Déplacer</button>' +
+            (b.status !== 'cancelled'
+              ? '<button class="bad sm" data-book-status="' + b.id + '" data-to="cancelled">Annuler</button>' : '') +
+          '</div>'
+        ).join('')
+      : '<p class="muted">Aucun rendez-vous pour ce candidat.</p>') +
+
+    '<h3>Note privée</h3>' +
+    '<textarea id="mNotes">' + esc(l.notes || '') + '</textarea>' +
+    '<div class="row" style="margin-top:10px"><button id="mSaveNote">Enregistrer la note</button></div>'
+  );
+
+  $('mClose').onclick = closeModal;
+  $('mSaveNote').onclick = async () => {
+    try {
+      await api('/api/admin/lead-status', { method:'POST', body: JSON.stringify({ id: l.id, notes: $('mNotes').value }) });
+      toast('Note enregistrée');
+      await load();
+    } catch (e) { toast(e.message, true); }
+  };
+}
+
+/* ---------------- Déplacer un rendez-vous ---------------- */
+async function openReschedule(bookingId){
+  const b = data.bookings.find(v => v.id === bookingId);
+  if (!b) return;
+  const l = data.leads.find(v => v.id === b.leadId) || {};
+
+  openModal(
+    '<div class="row"><h2 class="grow" style="margin:0">Déplacer le rendez-vous</h2>' +
+      '<button class="ghost sm" id="rClose">Fermer</button></div>' +
+    '<p class="muted small" style="margin:6px 0 18px">' + esc(l.name || '') +
+      ' — actuellement le ' + fmtDate(b.date) + ' à ' + esc(b.time) + '</p>' +
+    '<label class="small muted">Nouvelle date</label>' +
+    '<select id="rDate">' + data.calendar.map(d =>
+        '<option value="' + d.date + '"' + (d.date === b.date ? ' selected' : '') + '>' +
+        fmtDate(d.date) + ' — ' + d.slots.filter(s => s.available).length + ' libre(s)</option>'
+      ).join('') + '</select>' +
+    '<label class="small muted" style="display:block;margin-top:12px">Nouvelle heure</label>' +
+    '<select id="rTime"></select>' +
+    '<p class="small muted" style="margin-top:10px">Les créneaux déjà réservés par un autre candidat sont désactivés. ' +
+      'Le serveur revérifie la disponibilité au moment de l’enregistrement.</p>' +
+    '<div class="row" style="margin-top:14px"><button id="rSave">Enregistrer</button>' +
+      '<button class="ghost" id="rCancel">Annuler</button></div>'
+  );
+
+  function fillTimes(){
+    const day = data.calendar.find(d => d.date === $('rDate').value);
+    const slots = day ? day.slots : [];
+    $('rTime').innerHTML = slots.map(s => {
+      const isCurrent = (day.date === b.date && s.time === b.time);
+      const usable = s.available || isCurrent;
+      const tag = isCurrent ? ' (actuel)' : (s.taken ? ' — réservé' : (s.past ? ' — passé' : ''));
+      return '<option value="' + s.time + '"' + (usable ? '' : ' disabled') +
+             (isCurrent ? ' selected' : '') + '>' + s.time + tag + '</option>';
+    }).join('');
+  }
+  fillTimes();
+  $('rDate').onchange = fillTimes;
+  $('rClose').onclick = closeModal;
+  $('rCancel').onclick = closeModal;
+  $('rSave').onclick = async () => {
+    $('rSave').disabled = true;
+    try {
+      await api('/api/admin/booking-reschedule', {
+        method: 'POST',
+        body: JSON.stringify({ id: bookingId, date: $('rDate').value, time: $('rTime').value })
+      });
+      toast('Rendez-vous déplacé');
+      closeModal();
+      await load();
+    } catch (e) {
+      toast(e.code === 'slot_taken' ? 'Ce créneau vient d’être pris.' : e.message, true);
+      $('rSave').disabled = false;
+      await load();
+    }
+  };
+}
+
+/* ---------------- Événements ---------------- */
+document.addEventListener('click', async (ev) => {
+  const t = ev.target.closest('[data-open-lead],[data-reschedule],[data-book-status],.tab');
+  if (!t) return;
+
+  if (t.classList.contains('tab')) {
+    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+    ['leads','bookings','calendar'].forEach(v =>
+      $('view-' + v).classList.toggle('hidden', v !== t.dataset.view));
+    return;
+  }
+  if (t.dataset.openLead) { closeModal(); openLead(t.dataset.openLead); return; }
+  if (t.dataset.reschedule) { openReschedule(t.dataset.reschedule); return; }
+  if (t.dataset.bookStatus) {
+    const to = t.dataset.to;
+    if (to === 'cancelled' && !confirm('Annuler ce rendez-vous ? Le créneau redeviendra disponible.')) return;
+    t.disabled = true;
+    try {
+      await api('/api/admin/booking-status', { method:'POST', body: JSON.stringify({ id: t.dataset.bookStatus, status: to }) });
+      toast(to === 'cancelled' ? 'Rendez-vous annulé' : to === 'confirmed' ? 'Rendez-vous confirmé' : 'Rendez-vous rétabli');
+      closeModal();
+      await load();
+    } catch (e) {
+      toast(e.code === 'slot_taken' ? 'Le créneau a été repris entre-temps.' : e.message, true);
+      t.disabled = false;
+    }
+  }
+});
+
+document.addEventListener('change', async (ev) => {
+  const sel = ev.target.closest('[data-lead-status]');
+  if (!sel) return;
+  try {
+    await api('/api/admin/lead-status', { method:'POST', body: JSON.stringify({ id: sel.dataset.leadStatus, status: sel.value }) });
+    toast('Statut mis à jour');
+    await load();
+  } catch (e) { toast(e.message, true); }
+});
+
+$('modal').addEventListener('click', e => { if (e.target === $('modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+$('loginBtn').onclick = login;
+$('pass').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+$('logoutBtn').onclick = logout;
+$('refreshBtn').onclick = () => load().then(() => toast('Données actualisées')).catch(e => toast(e.message, true));
+$('search').addEventListener('input', renderLeads);
+$('filterStatus').addEventListener('change', renderLeads);
+$('showCancelled').addEventListener('change', renderBookings);
+
+function download(path, filename){
+  fetch(path, { headers: { Authorization: 'Bearer ' + token } })
+    .then(r => r.blob())
+    .then(b => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    })
+    .catch(() => toast('Export impossible', true));
+}
+$('csvLeads').onclick = () => download('/api/admin/export.csv', 'candidats.csv');
+$('csvBookings').onclick = () => download('/api/admin/export-bookings.csv', 'rendez-vous.csv');
+
+// Actualisation automatique : les nouveaux rendez-vous apparaissent sans recharger la page.
+setInterval(() => {
+  if (token && !$('dash').classList.contains('hidden')) load().catch(() => {});
+}, 30000);
+
+/* Reprise de session après un rafraîchissement de page. */
+(function restore(){
+  let saved = '';
+  try { saved = sessionStorage.getItem('adm') || ''; } catch(e){}
+  if (!saved) return;
+  token = saved;
+  $('login').classList.add('hidden');
+  $('dash').classList.remove('hidden');
+  load().catch(() => logout());
+})();
+</script>
+</body>
+</html>
+
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connexion — Dashboard privé</title><style>
+:root{
+  --bg:#f4f6fb; --ink:#141d2e; --muted:#6a7691; --line:#e4e8f1; --card:#fff;
+  --brand:#172033; --ok:#1d7a44; --okbg:#e7f6ed; --warn:#9a6a00; --warnbg:#fdf3dd;
+  --bad:#a32424; --badbg:#fdecec; --info:#2a4d8f; --infobg:#e9f0ff;
+  --radius:14px; --shadow:0 6px 24px rgba(20,29,46,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:24px;margin:0 0 4px}
+h2{font-size:18px;margin:0 0 14px}
+h3{font-size:15px;margin:22px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.box{background:var(--card);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+input,select,textarea,button{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:inherit;width:100%}
+textarea{min-height:72px;resize:vertical}
+button{background:var(--brand);color:#fff;border:0;font-weight:600;cursor:pointer;width:auto;padding:10px 16px}
+button:hover{opacity:.9}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{background:#eef1f7;color:var(--ink)}
+button.ok{background:var(--ok)}
+button.bad{background:var(--bad)}
+button.sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.hidden{display:none !important}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row>.grow{flex:1;min-width:180px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.kpi .n{font-size:26px;font-weight:800;margin-top:4px}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:9px 16px;border-radius:999px;background:#e8ecf4;cursor:pointer;font-weight:600;font-size:14px;border:0;color:var(--ink);width:auto}
+.tab.on{background:var(--brand);color:#fff}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:10px;border-bottom:2px solid var(--line)}
+td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:hover td{background:#fafbfe}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eef1f7;color:var(--muted)}
+.pill.ok{background:var(--okbg);color:var(--ok)}
+.pill.warn{background:var(--warnbg);color:var(--warn)}
+.pill.bad{background:var(--badbg);color:var(--bad)}
+.pill.info{background:var(--infobg);color:var(--info)}
+.score{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-weight:800;background:#eef1f7}
+.score.s2{background:var(--warnbg);color:var(--warn)}
+.score.s3{background:var(--okbg);color:var(--ok)}
+.link{color:var(--info);text-decoration:none;font-weight:600;cursor:pointer}
+.wa{color:var(--ok);text-decoration:none;font-weight:600}
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.day{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.day header{padding:9px 12px;background:#f2f5fa;font-weight:700;font-size:13px;border-bottom:1px solid var(--line)}
+.day header .c{float:right;font-weight:600;color:var(--muted)}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 12px;font-size:13px;border-bottom:1px solid #f1f3f8}
+.slot:last-child{border-bottom:0}
+.slot.free{color:var(--ok)}
+.slot.busy{background:var(--infobg)}
+.slot.past{color:#b6bdcc;text-decoration:line-through}
+.slot b{font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(15,22,36,.55);display:flex;align-items:flex-start;justify-content:center;padding:28px 16px;overflow:auto;z-index:50}
+.modal .panel{background:#fff;border-radius:16px;max-width:760px;width:100%;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.answers{display:grid;grid-template-columns:150px 1fr;gap:8px 16px;font-size:14px}
+.answers dt{color:var(--muted);font-weight:600}
+.answers dd{margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--brand);color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:100;font-weight:600}
+.toast.bad{background:var(--bad)}
+.banner{padding:12px 16px;border-radius:10px;background:var(--warnbg);color:var(--warn);font-weight:600;margin-bottom:16px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:1fr}.wrap{padding:18px 14px 60px}}
+
+.shell{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}.sidebar{position:sticky;top:20px;background:#111a2d;color:#fff;border-radius:18px;padding:18px;box-shadow:var(--shadow)}.brand{padding:8px 10px 20px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px}.brand strong{font-size:18px}.brand span{display:block;color:#aeb8cb;font-size:12px;margin-top:3px}.nav{display:flex;flex-direction:column;gap:7px}.nav button{width:100%;text-align:left;background:transparent;color:#cbd4e5;padding:11px 12px;border-radius:10px}.nav button:hover,.nav button.active{background:#24304a;color:#fff}.main{min-width:0}.topbar{background:#fff;border-radius:16px;padding:16px 18px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);margin-bottom:18px}.topbar .grow{flex:1}.iconbtn{position:relative}.badge{position:absolute;top:-5px;right:-5px;background:#d92d20;color:#fff;border-radius:999px;min-width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center}.overview-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px}.appt{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.appt:last-child{border-bottom:0}.time{font-weight:800;font-size:18px;min-width:58px}.apptmain{display:flex;flex-direction:column;flex:1}.apptmain span{font-size:12px;color:var(--muted)}.notif{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.notif:last-child{border-bottom:0}.dot{width:9px;height:9px;border-radius:50%;background:#2a4d8f;margin-top:6px;flex:0 0 auto}.empty{padding:24px 10px;color:var(--muted);text-align:center}.section-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.section-head h2{margin:0;flex:1}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}.quick .box{margin:0}.mini{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{position:static}.nav{flex-direction:row;overflow:auto}.nav button{white-space:nowrap;width:auto}.overview-grid{grid-template-columns:1fr}}
+</style></head><body><div class="wrap"><div class="box" style="max-width:440px;margin:70px auto"><h1>Dashboard privé</h1><p class="muted small">Coach Leonidas — Empire des Spatiates</p><div style="margin-top:22px"><label class="small muted">Utilisateur</label><input id="user" value="admin" autocomplete="username"></div><div style="margin-top:14px"><label class="small muted">Mot de passe</label><input id="pass" type="password" autocomplete="current-password"></div><button id="loginBtn" style="margin-top:18px;width:100%">Se connecter</button><p id="loginErr" class="small hidden" style="color:var(--bad);margin-top:10px"></p><p class="small muted" style="margin-top:14px">Votre espace est privé. Après connexion, vous serez redirigé vers votre dashboard.</p></div></div><script>
+async function login(){const btn=document.getElementById('loginBtn');btn.disabled=true;document.getElementById('loginErr').classList.add('hidden');try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:document.getElementById('user').value,password:document.getElementById('pass').value})});const x=await r.json().catch(()=>({}));if(!r.ok){document.getElementById('loginErr').textContent=x.code==='rate_limited'?'Trop de tentatives. Patientez quelques minutes.':'Identifiants incorrects.';document.getElementById('loginErr').classList.remove('hidden');return}try{sessionStorage.setItem('adm',x.token)}catch(e){}window.location.href='/dashboard';}finally{btn.disabled=false}}document.getElementById('loginBtn').onclick=login;document.getElementById('pass').addEventListener('keydown',e=>{if(e.key==='Enter')login()});try{if(sessionStorage.getItem('adm'))window.location.href='/dashboard'}catch(e){}
+</script></body></html>
