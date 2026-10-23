@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard privé — Coach Leonidas</title>
+<style>
+:root{
+  --bg:#f4f6fb; --ink:#141d2e; --muted:#6a7691; --line:#e4e8f1; --card:#fff;
+  --brand:#172033; --ok:#1d7a44; --okbg:#e7f6ed; --warn:#9a6a00; --warnbg:#fdf3dd;
+  --bad:#a32424; --badbg:#fdecec; --info:#2a4d8f; --infobg:#e9f0ff;
+  --radius:14px; --shadow:0 6px 24px rgba(20,29,46,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:24px;margin:0 0 4px}
+h2{font-size:18px;margin:0 0 14px}
+h3{font-size:15px;margin:22px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.box{background:var(--card);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+input,select,textarea,button{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:inherit;width:100%}
+textarea{min-height:72px;resize:vertical}
+button{background:var(--brand);color:#fff;border:0;font-weight:600;cursor:pointer;width:auto;padding:10px 16px}
+button:hover{opacity:.9}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{background:#eef1f7;color:var(--ink)}
+button.ok{background:var(--ok)}
+button.bad{background:var(--bad)}
+button.sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.hidden{display:none !important}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row>.grow{flex:1;min-width:180px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.kpi .n{font-size:26px;font-weight:800;margin-top:4px}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:9px 16px;border-radius:999px;background:#e8ecf4;cursor:pointer;font-weight:600;font-size:14px;border:0;color:var(--ink);width:auto}
+.tab.on{background:var(--brand);color:#fff}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:10px;border-bottom:2px solid var(--line)}
+td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:hover td{background:#fafbfe}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eef1f7;color:var(--muted)}
+.pill.ok{background:var(--okbg);color:var(--ok)}
+.pill.warn{background:var(--warnbg);color:var(--warn)}
+.pill.bad{background:var(--badbg);color:var(--bad)}
+.pill.info{background:var(--infobg);color:var(--info)}
+.score{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-weight:800;background:#eef1f7}
+.score.s2{background:var(--warnbg);color:var(--warn)}
+.score.s3{background:var(--okbg);color:var(--ok)}
+.link{color:var(--info);text-decoration:none;font-weight:600;cursor:pointer}
+.wa{color:var(--ok);text-decoration:none;font-weight:600}
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.day{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.day header{padding:9px 12px;background:#f2f5fa;font-weight:700;font-size:13px;border-bottom:1px solid var(--line)}
+.day header .c{float:right;font-weight:600;color:var(--muted)}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 12px;font-size:13px;border-bottom:1px solid #f1f3f8}
+.slot:last-child{border-bottom:0}
+.slot.free{color:var(--ok)}
+.slot.busy{background:var(--infobg)}
+.slot.past{color:#b6bdcc;text-decoration:line-through}
+.slot b{font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(15,22,36,.55);display:flex;align-items:flex-start;justify-content:center;padding:28px 16px;overflow:auto;z-index:50}
+.modal .panel{background:#fff;border-radius:16px;max-width:760px;width:100%;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.answers{display:grid;grid-template-columns:150px 1fr;gap:8px 16px;font-size:14px}
+.answers dt{color:var(--muted);font-weight:600}
+.answers dd{margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--brand);color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:100;font-weight:600}
+.toast.bad{background:var(--bad)}
+.banner{padding:12px 16px;border-radius:10px;background:var(--warnbg);color:var(--warn);font-weight:600;margin-bottom:16px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:1fr}.wrap{padding:18px 14px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============== CONNEXION ============== -->
+  <div id="login" class="box" style="max-width:420px;margin:60px auto">
+    <h1>Dashboard privé</h1>
+    <p class="muted small">Coach Leonidas — Empire des Spatiates</p>
+    <div style="margin-top:18px">
+      <label class="small muted">Utilisateur</label>
+      <input id="user" value="admin" autocomplete="username">
+    </div>
+    <div style="margin-top:12px">
+      <label class="small muted">Mot de passe</label>
+      <input id="pass" type="password" autocomplete="current-password">
+    </div>
+    <button id="loginBtn" style="margin-top:16px;width:100%">Se connecter</button>
+    <p id="loginErr" class="small hidden" style="color:var(--bad);margin-top:10px"></p>
+    <p class="small muted" style="margin-top:14px">Définissez <code>ADMIN_PASS</code> sur votre hébergement avant la mise en ligne.</p>
+  </div>
+
+  <!-- ============== DASHBOARD ============== -->
+  <div id="dash" class="hidden">
+    <div class="row" style="margin-bottom:18px">
+      <div class="grow">
+        <h1>Mon Dashboard privé — Coach Leonidas</h1>
+        <p class="muted small" id="envLine"></p>
+      </div>
+      <button class="ghost" id="refreshBtn">Actualiser</button>
+      <button class="ghost" id="logoutBtn">Déconnexion</button>
+    </div>
+
+    <div id="defaultPassWarn" class="banner hidden">
+      Le mot de passe administrateur par défaut est encore actif. Changez-le avant de publier le site.
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="muted small">Candidats</div><div class="n" id="kLeads">0</div></div>
+      <div class="kpi"><div class="muted small">Nouveaux</div><div class="n" id="kNew">0</div></div>
+      <div class="kpi"><div class="muted small">Qualifiés</div><div class="n" id="kQualified">0</div></div>
+      <div class="kpi"><div class="muted small">Rendez-vous actifs</div><div class="n" id="kBookings">0</div></div>
+      <div class="kpi"><div class="muted small">Créneaux libres (14 j)</div><div class="n" id="kFree">0</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-view="leads">Candidats</button>
+      <button class="tab" data-view="bookings">Rendez-vous</button>
+      <button class="tab" data-view="calendar">Calendrier</button>
+    </div>
+
+    <!-- --- Candidats --- -->
+    <section id="view-leads" class="box">
+      <div class="row" style="margin-bottom:14px">
+        <h2 style="margin:0" class="grow">Candidats</h2>
+        <input id="search" class="grow" placeholder="Nom, email, WhatsApp, langue…">
+        <select id="filterStatus" style="width:auto">
+          <option value="">Tous les statuts</option>
+          <option value="new">Nouveau</option>
+          <option value="contacted">Contacté</option>
+          <option value="qualified">Qualifié</option>
+          <option value="converted">Converti</option>
+          <option value="lost">Perdu</option>
+        </select>
+        <button class="ghost" id="csvLeads">Export CSV</button>
+      </div>
+      <div class="tablewrap" id="leadsTable"></div>
+    </section>
+
+    <!-- --- Rendez-vous --- -->
+    <section id="view-bookings" class="box hidden">
+      <div class="row" style="margin-bottom:14px">
+        <h2 style="margin:0" class="grow">Mes rendez-vous</h2>
+        <label class="small muted row" style="gap:6px;width:auto">
+          <input type="checkbox" id="showCancelled" style="width:auto">
+          Afficher les annulés
+        </label>
+        <button class="ghost" id="csvBookings">Export CSV</button>
+      </div>
+      <div class="tablewrap" id="bookingsTable"></div>
+    </section>
+
+    <!-- --- Calendrier --- -->
+    <section id="view-calendar" class="box hidden">
+      <h2>Calendrier des 14 prochains jours</h2>
+      <p class="muted small">Vert = libre · Bleu = réservé · Grisé = déjà passé. Cliquez sur un créneau réservé pour ouvrir le candidat.</p>
+      <div class="cal" id="calendar" style="margin-top:16px"></div>
+    </section>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden"><div class="panel" id="modalPanel"></div></div>
+
+<script>
+'use strict';
+const $ = (id) => document.getElementById(id);
+let token = '';
+let data = { leads: [], bookings: [], calendar: [], times: [], window: {} };
+
+/* ---------------- Utilitaires ---------------- */
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function digits(v){return String(v||'').replace(/\D/g,'');}
+function toast(msg, bad){
+  const el = document.createElement('div');
+  el.className = 'toast' + (bad ? ' bad' : '');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3200);
+}
+function fmtDate(iso){
+  try { return new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR',{weekday:'short',day:'2-digit',month:'short'}); }
+  catch(e){ return iso; }
+}
+function fmtDateTime(iso){
+  try { return new Date(iso).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}); }
+  catch(e){ return iso || '—'; }
+}
+const LEAD_STATUS = {new:'Nouveau',contacted:'Contacté',qualified:'Qualifié',converted:'Converti',lost:'Perdu'};
+const BOOK_STATUS = {pending:'À confirmer',confirmed:'Confirmé',cancelled:'Annulé'};
+const BOOK_PILL   = {pending:'warn',confirmed:'ok',cancelled:'bad'};
+const Q_LABELS = {
+  q1:'1. Niveau d’expérience', q2:'2. Marché préféré', q3:'3. Plus grande difficulté',
+  q4:'4. Objectif principal', q5:'5. Temps par semaine', q6:'6. Budget envisagé',
+  q7:'7. Plan de trading écrit', q8:'8. Type d’accompagnement'
+};
+
+async function api(path, opts){
+  const o = Object.assign({ headers: {} }, opts || {});
+  o.headers = Object.assign({ Authorization: 'Bearer ' + token }, o.headers);
+  if (o.body) o.headers['Content-Type'] = 'application/json';
+  const r = await fetch(path, o);
+  if (r.status === 401) { logout(); throw new Error('Session expirée'); }
+  const x = await r.json().catch(() => ({}));
+  if (!r.ok) throw Object.assign(new Error(x.error || 'Erreur'), { code: x.code, payload: x });
+  return x;
+}
+
+/* ---------------- Connexion ---------------- */
+async function login(){
+  const btn = $('loginBtn');
+  btn.disabled = true;
+  $('loginErr').classList.add('hidden');
+  try {
+    const r = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: $('user').value, password: $('pass').value })
+    });
+    const x = await r.json();
+    if (!r.ok) {
+      $('loginErr').textContent = x.code === 'rate_limited'
+        ? 'Trop de tentatives. Patientez quelques minutes.'
+        : 'Identifiants incorrects.';
+      $('loginErr').classList.remove('hidden');
+      return;
+    }
+    token = x.token;
+    try { sessionStorage.setItem('adm', token); } catch(e){}
+    if ($('pass').value === 'ChangeMe123!') $('defaultPassWarn').classList.remove('hidden');
+    $('login').classList.add('hidden');
+    $('dash').classList.remove('hidden');
+    await load();
+  } finally { btn.disabled = false; }
+}
+
+function logout(){
+  fetch('/api/admin/logout', { method:'POST', headers:{ Authorization:'Bearer ' + token } }).catch(()=>{});
+  token = '';
+  try { sessionStorage.removeItem('adm'); } catch(e){}
+  $('dash').classList.add('hidden');
+  $('login').classList.remove('hidden');
+  $('pass').value = '';
+}
+
+/* ---------------- Chargement ---------------- */
+async function load(){
+  data = await api('/api/admin/data');
+  const active = data.bookings.filter(b => b.status !== 'cancelled');
+  $('kLeads').textContent     = data.leads.length;
+  $('kNew').textContent       = data.leads.filter(l => l.status === 'new').length;
+  $('kQualified').textContent = data.leads.filter(l => l.status === 'qualified').length;
+  $('kBookings').textContent  = active.length;
+  $('kFree').textContent      = data.calendar.reduce((n,d) => n + d.slots.filter(s => s.available).length, 0);
+  $('envLine').textContent    = 'Stockage : ' + data.engine + ' · Fuseau : ' + data.timezone +
+                                ' · Réservations ouvertes du ' + data.window.today + ' au ' + data.window.max;
+  renderLeads(); renderBookings(); renderCalendar();
+}
+
+/* ---------------- Candidats ---------------- */
+function bookingOf(leadId){
+  return data.bookings.find(b => b.leadId === leadId && b.status !== 'cancelled') || null;
+}
+
+function renderLeads(){
+  const q = ($('search').value || '').toLowerCase().trim();
+  const st = $('filterStatus').value;
+  const rows = data.leads.filter(l => {
+    if (st && l.status !== st) return false;
+    if (!q) return true;
+    return [l.name,l.email,l.phone,l.language,l.q1,l.q2,l.q3,l.q4,l.q5,l.q6,l.q7,l.q8,l.notes]
+      .join(' ').toLowerCase().includes(q);
+  });
+
+  if (!rows.length) { $('leadsTable').innerHTML = '<p class="muted">Aucun candidat ne correspond.</p>'; return; }
+
+  $('leadsTable').innerHTML =
+    '<table><thead><tr><th>Candidat</th><th>Langue</th><th>Score</th><th>Candidature</th>' +
+    '<th>Rendez-vous</th><th>Statut</th><th></th></tr></thead><tbody>' +
+    rows.map(l => {
+      const b = bookingOf(l.id);
+      const sc = Number(l.score || 0);
+      return '<tr>' +
+        '<td><b>' + esc(l.name) + '</b><br><span class="small muted">' + esc(l.email) + '</span><br>' +
+          '<a class="wa small" target="_blank" rel="noopener" href="https://wa.me/' + digits(l.phone) + '">' + esc(l.phone) + '</a></td>' +
+        '<td><span class="pill">' + esc(l.language || '—') + '</span></td>' +
+        '<td><span class="score s' + sc + '">' + sc + '</span><span class="small muted">/3</span></td>' +
+        '<td class="small muted">' + fmtDateTime(l.createdAt) + '</td>' +
+        '<td>' + (b
+            ? '<b>' + fmtDate(b.date) + '</b><br>' + esc(b.time) +
+              '<br><span class="pill ' + BOOK_PILL[b.status] + '">' + BOOK_STATUS[b.status] + '</span>'
+            : '<span class="muted small">Aucun</span>') + '</td>' +
+        '<td><select class="sm" data-lead-status="' + l.id + '">' +
+          Object.keys(LEAD_STATUS).map(k =>
+            '<option value="' + k + '"' + (l.status === k ? ' selected' : '') + '>' + LEAD_STATUS[k] + '</option>'
+          ).join('') + '</select></td>' +
+        '<td><button class="ghost sm" data-open-lead="' + l.id + '">Détails</button></td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ---------------- Rendez-vous ---------------- */
+function renderBookings(){
+  const showCancelled = $('showCancelled').checked;
+  const rows = data.bookings
+    .filter(b => showCancelled || b.status !== 'cancelled')
+    .sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time));
+
+  if (!rows.length) { $('bookingsTable').innerHTML = '<p class="muted">Aucun rendez-vous.</p>'; return; }
+
+  $('bookingsTable').innerHTML =
+    '<table><thead><tr><th>Date</th><th>Heure</th><th>Candidat</th><th>Langue</th>' +
+    '<th>Score</th><th>Statut</th><th>Actions</th></tr></thead><tbody>' +
+    rows.map(b => {
+      const l = data.leads.find(v => v.id === b.leadId) || {};
+      const sc = Number(l.score || 0);
+      return '<tr>' +
+        '<td><b>' + fmtDate(b.date) + '</b><br><span class="small muted">' + esc(b.date) + '</span></td>' +
+        '<td><b>' + esc(b.time) + '</b></td>' +
+        '<td><b>' + esc(l.name || '—') + '</b><br>' +
+          '<a class="wa small" target="_blank" rel="noopener" href="https://wa.me/' + digits(l.phone) + '">' + esc(l.phone || '') + '</a></td>' +
+        '<td><span class="pill">' + esc(l.language || '—') + '</span></td>' +
+        '<td><span class="score s' + sc + '">' + sc + '</span></td>' +
+        '<td><span class="pill ' + BOOK_PILL[b.status] + '">' + BOOK_STATUS[b.status] + '</span></td>' +
+        '<td class="row" style="gap:6px">' +
+          '<button class="ghost sm" data-open-lead="' + b.leadId + '">Détails</button>' +
+          (b.status !== 'confirmed' ? '<button class="ok sm" data-book-status="' + b.id + '" data-to="confirmed">Confirmer</button>' : '') +
+          '<button class="ghost sm" data-reschedule="' + b.id + '">Déplacer</button>' +
+          (b.status !== 'cancelled'
+            ? '<button class="bad sm" data-book-status="' + b.id + '" data-to="cancelled">Annuler</button>'
+            : '<button class="ghost sm" data-book-status="' + b.id + '" data-to="pending">Rétablir</button>') +
+        '</td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ---------------- Calendrier ---------------- */
+function renderCalendar(){
+  $('calendar').innerHTML = data.calendar.map(day => {
+    const free = day.slots.filter(s => s.available).length;
+    return '<div class="day"><header>' + fmtDate(day.date) +
+      '<span class="c">' + free + ' libre' + (free > 1 ? 's' : '') + '</span></header>' +
+      day.slots.map(s => {
+        if (s.past && !s.taken) return '<div class="slot past"><span>' + esc(s.time) + '</span><span>passé</span></div>';
+        if (!s.taken) return '<div class="slot free"><span>' + esc(s.time) + '</span><span>libre</span></div>';
+        const b = data.bookings.find(v => v.date === day.date && v.time === s.time && v.status !== 'cancelled');
+        const l = b ? (data.leads.find(v => v.id === b.leadId) || {}) : {};
+        return '<div class="slot busy"><span>' + esc(s.time) + '</span>' +
+          (b ? '<a class="link" data-open-lead="' + b.leadId + '">' + esc((l.name || 'Réservé').split(' ')[0]) + '</a>'
+             : '<b>réservé</b>') + '</div>';
+      }).join('') + '</div>';
+  }).join('');
+}
+
+/* ---------------- Fiche candidat ---------------- */
+function openModal(html){ $('modalPanel').innerHTML = html; $('modal').classList.remove('hidden'); }
+function closeModal(){ $('modal').classList.add('hidden'); $('modalPanel').innerHTML = ''; }
+
+async function openLead(id){
+  let res;
+  try { res = await api('/api/admin/lead?id=' + encodeURIComponent(id)); }
+  catch (e) { toast(e.message, true); return; }
+  const l = res.lead;
+  const sc = Number(l.score || 0);
+
+  openModal(
+    '<div class="row"><h2 class="grow" style="margin:0">' + esc(l.name) + '</h2>' +
+      '<button class="ghost sm" id="mClose">Fermer</button></div>' +
+    '<p class="muted small" style="margin:6px 0 18px">Candidature du ' + fmtDateTime(l.createdAt) + '</p>' +
+
+    '<div class="row" style="gap:18px;margin-bottom:18px">' +
+      '<div><div class="muted small">Score</div><span class="score s' + sc + '">' + sc + '</span> <span class="small muted">/3</span></div>' +
+      '<div><div class="muted small">Langue</div><span class="pill">' + esc(l.language || '—') + '</span></div>' +
+      '<div><div class="muted small">Statut</div><span class="pill info">' + (LEAD_STATUS[l.status] || l.status) + '</span></div>' +
+    '</div>' +
+
+    '<h3>Contact</h3>' +
+    '<dl class="answers">' +
+      '<dt>Email</dt><dd><a class="link" href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a></dd>' +
+      '<dt>WhatsApp</dt><dd><a class="wa" target="_blank" rel="noopener" href="https://wa.me/' + digits(l.phone) + '">' + esc(l.phone) + '</a></dd>' +
+    '</dl>' +
+
+    '<h3>Réponses au questionnaire</h3>' +
+    '<dl class="answers">' +
+      Object.keys(Q_LABELS).map(k =>
+        '<dt>' + Q_LABELS[k] + '</dt><dd>' + esc(l[k] || '—') + '</dd>'
+      ).join('') +
+    '</dl>' +
+
+    '<h3>Rendez-vous</h3>' +
+    (res.bookings.length
+      ? res.bookings.map(b =>
+          '<div class="row" style="border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px">' +
+            '<div class="grow"><b>' + fmtDate(b.date) + ' · ' + esc(b.time) + '</b><br>' +
+              '<span class="pill ' + BOOK_PILL[b.status] + '">' + BOOK_STATUS[b.status] + '</span>' +
+              '<span class="small muted"> réservé le ' + fmtDateTime(b.createdAt) + '</span></div>' +
+            '<button class="ghost sm" data-reschedule="' + b.id + '">Déplacer</button>' +
+            (b.status !== 'cancelled'
+              ? '<button class="bad sm" data-book-status="' + b.id + '" data-to="cancelled">Annuler</button>' : '') +
+          '</div>'
+        ).join('')
+      : '<p class="muted">Aucun rendez-vous pour ce candidat.</p>') +
+
+    '<h3>Note privée</h3>' +
+    '<textarea id="mNotes">' + esc(l.notes || '') + '</textarea>' +
+    '<div class="row" style="margin-top:10px"><button id="mSaveNote">Enregistrer la note</button></div>'
+  );
+
+  $('mClose').onclick = closeModal;
+  $('mSaveNote').onclick = async () => {
+    try {
+      await api('/api/admin/lead-status', { method:'POST', body: JSON.stringify({ id: l.id, notes: $('mNotes').value }) });
+      toast('Note enregistrée');
+      await load();
+    } catch (e) { toast(e.message, true); }
+  };
+}
+
+/* ---------------- Déplacer un rendez-vous ---------------- */
+async function openReschedule(bookingId){
+  const b = data.bookings.find(v => v.id === bookingId);
+  if (!b) return;
+  const l = data.leads.find(v => v.id === b.leadId) || {};
+
+  openModal(
+    '<div class="row"><h2 class="grow" style="margin:0">Déplacer le rendez-vous</h2>' +
+      '<button class="ghost sm" id="rClose">Fermer</button></div>' +
+    '<p class="muted small" style="margin:6px 0 18px">' + esc(l.name || '') +
+      ' — actuellement le ' + fmtDate(b.date) + ' à ' + esc(b.time) + '</p>' +
+    '<label class="small muted">Nouvelle date</label>' +
+    '<select id="rDate">' + data.calendar.map(d =>
+        '<option value="' + d.date + '"' + (d.date === b.date ? ' selected' : '') + '>' +
+        fmtDate(d.date) + ' — ' + d.slots.filter(s => s.available).length + ' libre(s)</option>'
+      ).join('') + '</select>' +
+    '<label class="small muted" style="display:block;margin-top:12px">Nouvelle heure</label>' +
+    '<select id="rTime"></select>' +
+    '<p class="small muted" style="margin-top:10px">Les créneaux déjà réservés par un autre candidat sont désactivés. ' +
+      'Le serveur revérifie la disponibilité au moment de l’enregistrement.</p>' +
+    '<div class="row" style="margin-top:14px"><button id="rSave">Enregistrer</button>' +
+      '<button class="ghost" id="rCancel">Annuler</button></div>'
+  );
+
+  function fillTimes(){
+    const day = data.calendar.find(d => d.date === $('rDate').value);
+    const slots = day ? day.slots : [];
+    $('rTime').innerHTML = slots.map(s => {
+      const isCurrent = (day.date === b.date && s.time === b.time);
+      const usable = s.available || isCurrent;
+      const tag = isCurrent ? ' (actuel)' : (s.taken ? ' — réservé' : (s.past ? ' — passé' : ''));
+      return '<option value="' + s.time + '"' + (usable ? '' : ' disabled') +
+             (isCurrent ? ' selected' : '') + '>' + s.time + tag + '</option>';
+    }).join('');
+  }
+  fillTimes();
+  $('rDate').onchange = fillTimes;
+  $('rClose').onclick = closeModal;
+  $('rCancel').onclick = closeModal;
+  $('rSave').onclick = async () => {
+    $('rSave').disabled = true;
+    try {
+      await api('/api/admin/booking-reschedule', {
+        method: 'POST',
+        body: JSON.stringify({ id: bookingId, date: $('rDate').value, time: $('rTime').value })
+      });
+      toast('Rendez-vous déplacé');
+      closeModal();
+      await load();
+    } catch (e) {
+      toast(e.code === 'slot_taken' ? 'Ce créneau vient d’être pris.' : e.message, true);
+      $('rSave').disabled = false;
+      await load();
+    }
+  };
+}
+
+/* ---------------- Événements ---------------- */
+document.addEventListener('click', async (ev) => {
+  const t = ev.target.closest('[data-open-lead],[data-reschedule],[data-book-status],.tab');
+  if (!t) return;
+
+  if (t.classList.contains('tab')) {
+    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+    ['leads','bookings','calendar'].forEach(v =>
+      $('view-' + v).classList.toggle('hidden', v !== t.dataset.view));
+    return;
+  }
+  if (t.dataset.openLead) { closeModal(); openLead(t.dataset.openLead); return; }
+  if (t.dataset.reschedule) { openReschedule(t.dataset.reschedule); return; }
+  if (t.dataset.bookStatus) {
+    const to = t.dataset.to;
+    if (to === 'cancelled' && !confirm('Annuler ce rendez-vous ? Le créneau redeviendra disponible.')) return;
+    t.disabled = true;
+    try {
+      await api('/api/admin/booking-status', { method:'POST', body: JSON.stringify({ id: t.dataset.bookStatus, status: to }) });
+      toast(to === 'cancelled' ? 'Rendez-vous annulé' : to === 'confirmed' ? 'Rendez-vous confirmé' : 'Rendez-vous rétabli');
+      closeModal();
+      await load();
+    } catch (e) {
+      toast(e.code === 'slot_taken' ? 'Le créneau a été repris entre-temps.' : e.message, true);
+      t.disabled = false;
+    }
+  }
+});
+
+document.addEventListener('change', async (ev) => {
+  const sel = ev.target.closest('[data-lead-status]');
+  if (!sel) return;
+  try {
+    await api('/api/admin/lead-status', { method:'POST', body: JSON.stringify({ id: sel.dataset.leadStatus, status: sel.value }) });
+    toast('Statut mis à jour');
+    await load();
+  } catch (e) { toast(e.message, true); }
+});
+
+$('modal').addEventListener('click', e => { if (e.target === $('modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+$('loginBtn').onclick = login;
+$('pass').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+$('logoutBtn').onclick = logout;
+$('refreshBtn').onclick = () => load().then(() => toast('Données actualisées')).catch(e => toast(e.message, true));
+$('search').addEventListener('input', renderLeads);
+$('filterStatus').addEventListener('change', renderLeads);
+$('showCancelled').addEventListener('change', renderBookings);
+
+function download(path, filename){
+  fetch(path, { headers: { Authorization: 'Bearer ' + token } })
+    .then(r => r.blob())
+    .then(b => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    })
+    .catch(() => toast('Export impossible', true));
+}
+$('csvLeads').onclick = () => download('/api/admin/export.csv', 'candidats.csv');
+$('csvBookings').onclick = () => download('/api/admin/export-bookings.csv', 'rendez-vous.csv');
+
+// Actualisation automatique : les nouveaux rendez-vous apparaissent sans recharger la page.
+setInterval(() => {
+  if (token && !$('dash').classList.contains('hidden')) load().catch(() => {});
+}, 30000);
+
+/* Reprise de session après un rafraîchissement de page. */
+(function restore(){
+  let saved = '';
+  try { saved = sessionStorage.getItem('adm') || ''; } catch(e){}
+  if (!saved) return;
+  token = saved;
+  $('login').classList.add('hidden');
+  $('dash').classList.remove('hidden');
+  load().catch(() => logout());
+})();
+</script>
+</body>
+</html>
