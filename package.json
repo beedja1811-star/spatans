@@ -1,0 +1,8 @@
+{
+  "name": "empire-des-spatiates-trading-coaching",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site de qualification, booking et dashboard pour Empire des Spatiates",
+  "scripts": {"start":"node server.js"},
+  "engines": {"node": ">=22.5"}
+}

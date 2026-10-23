@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+npm-debug.log*
+
+# Donnees locales SQLite/JSON : ne jamais committer la base de donnees
+data/
